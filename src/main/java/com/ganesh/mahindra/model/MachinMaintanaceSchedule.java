@@ -49,10 +49,10 @@ public class MachinMaintanaceSchedule {
 	@Column(name = "del_status")
 	int delStatus;
 
-	@Column(name = "int1")
+	@Column(name = "int_1")
 	int int1;
 
-	@Column(name = "int2")
+	@Column(name = "int_2")
 	int int2;
 
 	@Column(name = "string1")
