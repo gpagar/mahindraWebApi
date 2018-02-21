@@ -30,9 +30,24 @@ public class UserDetails {
 
 	@Column(name = "photo")
 	String photo;
+	
+	@Column(name = "sign")
+	String sign;
 
 	@Column(name = "type")
 	int type;
+	
+	@Column(name = "int_1")
+	int int1;
+	
+	@Column(name = "int_2")
+	int int2;
+	
+	@Column(name = "string1")
+	String string1;
+	
+	@Column(name = "string2")
+	String string2;
 
 	@Column(name = "delStatus")
 	int delStatus;
@@ -101,12 +116,54 @@ public class UserDetails {
 		this.delStatus = delStatus;
 	}
 
+	public String getSign() {
+		return sign;
+	}
+
+	public void setSign(String sign) {
+		this.sign = sign;
+	}
+
+	public int getInt1() {
+		return int1;
+	}
+
+	public void setInt1(int int1) {
+		this.int1 = int1;
+	}
+
+	public int getInt2() {
+		return int2;
+	}
+
+	public void setInt2(int int2) {
+		this.int2 = int2;
+	}
+
+	public String getString1() {
+		return string1;
+	}
+
+	public void setString1(String string1) {
+		this.string1 = string1;
+	}
+
+	public String getString2() {
+		return string2;
+	}
+
+	public void setString2(String string2) {
+		this.string2 = string2;
+	}
+
 	@Override
 	public String toString() {
 		return "UserDetails [userId=" + userId + ", name=" + name + ", email=" + email + ", password=" + password
-				+ ", contact=" + contact + ", photo=" + photo + ", type=" + type + ", delStatus=" + delStatus + "]";
+				+ ", contact=" + contact + ", photo=" + photo + ", sign=" + sign + ", type=" + type + ", int1=" + int1
+				+ ", int2=" + int2 + ", string1=" + string1 + ", string2=" + string2 + ", delStatus=" + delStatus + "]";
 	}
 
+ 
 	
 	
 }

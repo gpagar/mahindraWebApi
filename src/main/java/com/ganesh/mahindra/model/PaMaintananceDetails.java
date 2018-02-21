@@ -39,21 +39,37 @@ public class PaMaintananceDetails {
 
 	@Column(name = "date1_observation")
 	String date1Obervation;
+	
+
+	@Column(name = "date1_photo")
+	String date1Photo;
+
 
 	@Column(name = "date2")
 	String date2;
 
 	@Column(name = "date2_observation")
 	String date2Obervation;
+	
+
+	@Column(name = "date2_photo")
+	String date2Photo;
+
 
 	@Column(name = "date3")
 	String date3;
 
 	@Column(name = "date3_observation")
 	String date3Obervation;
+	
+	@Column(name = "date3_photo")
+	String date3Photo;
 
 	@Column(name = "status")
 	int status;
+	
+	@Column(name = "type")
+	int type;
 
 	@Column(name = "del_status")
 	int delStatus;
@@ -69,9 +85,6 @@ public class PaMaintananceDetails {
 
 	@Column(name = "string2")
 	String string2;
-
-	@Column(name = "photo")
-	String photo;
 
 	@Column(name = "remark")
 	String remark;
@@ -220,12 +233,44 @@ public class PaMaintananceDetails {
 		this.string2 = string2;
 	}
 
-	public String getPhoto() {
-		return photo;
+	public int getItemId() {
+		return itemId;
 	}
 
-	public void setPhoto(String photo) {
-		this.photo = photo;
+	public void setItemId(int itemId) {
+		this.itemId = itemId;
+	}
+
+	public String getDate1Photo() {
+		return date1Photo;
+	}
+
+	public void setDate1Photo(String date1Photo) {
+		this.date1Photo = date1Photo;
+	}
+
+	public String getDate2Photo() {
+		return date2Photo;
+	}
+
+	public void setDate2Photo(String date2Photo) {
+		this.date2Photo = date2Photo;
+	}
+
+	public String getDate3Photo() {
+		return date3Photo;
+	}
+
+	public void setDate3Photo(String date3Photo) {
+		this.date3Photo = date3Photo;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
 	}
 
 	public String getRemark() {
@@ -236,23 +281,18 @@ public class PaMaintananceDetails {
 		this.remark = remark;
 	}
 
-	public int getItemId() {
-		return itemId;
-	}
-
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
-	}
-
 	@Override
 	public String toString() {
 		return "PaMaintananceDetails [paMaintId=" + paMaintId + ", machinId=" + machinId + ", activityId=" + activityId
 				+ ", itemId=" + itemId + ", checkPointId=" + checkPointId + ", method=" + method + ", rquiredValure="
-				+ rquiredValure + ", date1=" + date1 + ", date1Obervation=" + date1Obervation + ", date2=" + date2
-				+ ", date2Obervation=" + date2Obervation + ", date3=" + date3 + ", date3Obervation=" + date3Obervation
-				+ ", status=" + status + ", delStatus=" + delStatus + ", int1=" + int1 + ", int2=" + int2 + ", string1="
-				+ string1 + ", string2=" + string2 + ", photo=" + photo + ", remark=" + remark + "]";
+				+ rquiredValure + ", date1=" + date1 + ", date1Obervation=" + date1Obervation + ", date1Photo="
+				+ date1Photo + ", date2=" + date2 + ", date2Obervation=" + date2Obervation + ", date2Photo="
+				+ date2Photo + ", date3=" + date3 + ", date3Obervation=" + date3Obervation + ", date3Photo="
+				+ date3Photo + ", status=" + status + ", type=" + type + ", delStatus=" + delStatus + ", int1=" + int1
+				+ ", int2=" + int2 + ", string1=" + string1 + ", string2=" + string2 + ", remark=" + remark + "]";
 	}
+
+	 
 
 	 
 }
