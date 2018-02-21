@@ -26,7 +26,7 @@ public class PMCheckPoints {
 	String checkPointName;
 	
 	@Column(name = "check_point_desc")
-	int checkPointDesc;
+	String checkPointDesc;
 	
 	@Column(name = "del_status")
 	int delStatus;
@@ -67,11 +67,11 @@ public class PMCheckPoints {
 		this.checkPointName = checkPointName;
 	}
 
-	public int getCheckPointDesc() {
+	public String getCheckPointDesc() {
 		return checkPointDesc;
 	}
 
-	public void setCheckPointDesc(int checkPointDesc) {
+	public void setCheckPointDesc(String checkPointDesc) {
 		this.checkPointDesc = checkPointDesc;
 	}
 

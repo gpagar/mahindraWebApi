@@ -122,8 +122,16 @@ public class PMaintanance {
 	@ResponseBody
 	public List<PMCheckPoints> getCheckPointsByItemId(@RequestParam("itemId")int itemId ) 
 	{
-		System.out.println("getCheckPointsByItemId");
-		return pMCheckPointsRepository.findByItemIdAndDelStatus(itemId, 0);
+		List<PMCheckPoints> checkPointList = new ArrayList<PMCheckPoints>();
+		try
+		{
+			System.out.println("getCheckPointsByItemId");
+			checkPointList = pMCheckPointsRepository.findByItemIdAndDelStatus(itemId, 0);
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return checkPointList;
 	}
 	
 	
@@ -134,6 +142,28 @@ public class PMaintanance {
 	{
 		System.out.println("getCheckPointsByItemId");
 		return paMaintananceDetailsRepository.save(paMaintananceDetails);
+	}
+	
+	@RequestMapping(value = { "/getCheckRecordAgistMachine" }, method = RequestMethod.POST)
+	@ResponseBody
+	public PaMaintananceDetails getCheckRecordAgistMachine(@RequestParam("checkPointId")int checkPointId, @RequestParam("machineId")int machineId ) 
+	{
+		PaMaintananceDetails paMaintananceDetails = new PaMaintananceDetails();
+		try
+		{
+			System.out.println("getCheckPointsByItemId");
+			paMaintananceDetails = paMaintananceDetailsRepository.getCheckRecordAgistMachine(checkPointId,machineId);
+			System.out.println("paMaintananceDetails " + paMaintananceDetails);
+			
+			if(paMaintananceDetails==null)
+			{
+				paMaintananceDetails = new PaMaintananceDetails();
+			}
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return paMaintananceDetails;
 	}
 	
 }
