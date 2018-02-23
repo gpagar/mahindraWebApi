@@ -32,7 +32,7 @@ public class PaMaintananceDetails {
 	int method;
 
 	@Column(name = "required_value")
-	String rquiredValure;
+	int rquiredValure;
 
 	@Column(name = "date1")
 	String date1;
@@ -129,11 +129,11 @@ public class PaMaintananceDetails {
 		this.method = method;
 	}
 
-	public String getRquiredValure() {
+	public int getRquiredValure() {
 		return rquiredValure;
 	}
 
-	public void setRquiredValure(String rquiredValure) {
+	public void setRquiredValure(int rquiredValure) {
 		this.rquiredValure = rquiredValure;
 	}
 
