@@ -19,11 +19,11 @@ public class MachinMaintanaceSchedule {
 	@Column(name = "machin_id")
 	int machinId;
 	
-	@Column(name = "activity_id")
-	int activityId;
+	@Column(name = "f_status")
+	int fStatus;
 	
-	@Column(name = "item_id")
-	int itemId;
+	@Column(name = "s_status")
+	int sStatus;
 
 	@Column(name = "type")
 	int type;
@@ -60,6 +60,9 @@ public class MachinMaintanaceSchedule {
 
 	@Column(name = "string2")
 	String string2;
+	
+	@Column(name = "t_status")
+	int tStatus;
 
 	public int getMaintId() {
 		return maintId;
@@ -75,6 +78,22 @@ public class MachinMaintanaceSchedule {
 
 	public void setMachinId(int machinId) {
 		this.machinId = machinId;
+	}
+
+	public int getfStatus() {
+		return fStatus;
+	}
+
+	public void setfStatus(int fStatus) {
+		this.fStatus = fStatus;
+	}
+
+	public int getsStatus() {
+		return sStatus;
+	}
+
+	public void setsStatus(int sStatus) {
+		this.sStatus = sStatus;
 	}
 
 	public int getType() {
@@ -173,28 +192,21 @@ public class MachinMaintanaceSchedule {
 		this.string2 = string2;
 	}
 
-	public int getActivityId() {
-		return activityId;
+	public int gettStatus() {
+		return tStatus;
 	}
 
-	public void setActivityId(int activityId) {
-		this.activityId = activityId;
-	}
-
-	public int getItemId() {
-		return itemId;
-	}
-
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
+	public void settStatus(int tStatus) {
+		this.tStatus = tStatus;
 	}
 
 	@Override
 	public String toString() {
-		return "MachinMaintanaceSchedule [maintId=" + maintId + ", machinId=" + machinId + ", activityId=" + activityId
-				+ ", itemId=" + itemId + ", type=" + type + ", fMonth=" + fMonth + ", fWeek=" + fWeek + ", sMonth="
+		return "MachinMaintanaceSchedule [maintId=" + maintId + ", machinId=" + machinId + ", fStatus=" + fStatus
+				+ ", sStatus=" + sStatus + ", type=" + type + ", fMonth=" + fMonth + ", fWeek=" + fWeek + ", sMonth="
 				+ sMonth + ", sWeek=" + sWeek + ", tMonth=" + tMonth + ", tweek=" + tweek + ", delStatus=" + delStatus
-				+ ", int1=" + int1 + ", int2=" + int2 + ", string1=" + string1 + ", string2=" + string2 + "]";
+				+ ", int1=" + int1 + ", int2=" + int2 + ", string1=" + string1 + ", string2=" + string2 + ", tStatus="
+				+ tStatus + "]";
 	}
 
 	 

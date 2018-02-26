@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ganesh.mahindra.model.Info;
 import com.ganesh.mahindra.model.MachinDetails;
 import com.ganesh.mahindra.model.MachinDetailsList;
+import com.ganesh.mahindra.model.MachinMaintanaceSchedule;
 import com.ganesh.mahindra.model.PMActivityDetails;
 import com.ganesh.mahindra.model.PMCheckPoints;
 import com.ganesh.mahindra.model.PMItemDetails;
@@ -21,6 +22,7 @@ import com.ganesh.mahindra.model.PaMaintananceDetails;
 import com.ganesh.mahindra.model.PmRequiredValue;
 import com.ganesh.mahindra.model.UserDetails;
 import com.ganesh.mahindra.repository.MachinDetailsRepository;
+import com.ganesh.mahindra.repository.MachinMaintanaceScheduleRepository;
 import com.ganesh.mahindra.repository.PMActivityDetailsRepository;
 import com.ganesh.mahindra.repository.PMCheckPointsRepository;
 import com.ganesh.mahindra.repository.PMItemDetailsRepository;
@@ -45,6 +47,9 @@ public class PMaintanance {
 	
 	@Autowired
 	PmRequiredValueRepository pmRequiredValueRepository;
+	
+	@Autowired
+	MachinMaintanaceScheduleRepository machinMaintanaceScheduleRepository;
 	
 	@Autowired
 	PaMaintananceDetailsRepository paMaintananceDetailsRepository;
@@ -164,6 +169,28 @@ public class PMaintanance {
 			e.printStackTrace();
 		}
 		return paMaintananceDetails;
+	}
+	
+	@RequestMapping(value = { "/getPmMaintenancePlan" }, method = RequestMethod.POST)
+	@ResponseBody
+	public MachinMaintanaceSchedule getPmMaintenancePlan(@RequestParam("machineId")int machineId ) 
+	{
+		MachinMaintanaceSchedule getPmMaintenancePlan = new MachinMaintanaceSchedule();
+		try
+		{
+			System.out.println("getCheckPointsByItemId");
+			getPmMaintenancePlan = machinMaintanaceScheduleRepository.findByMachinIdAndDelStatus(machineId,0);
+			System.out.println("getPmMaintenancePlan " + getPmMaintenancePlan);
+			
+			if(getPmMaintenancePlan==null)
+			{
+				getPmMaintenancePlan = new MachinMaintanaceSchedule();
+			}
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return getPmMaintenancePlan;
 	}
 	
 }
