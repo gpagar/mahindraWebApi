@@ -42,6 +42,9 @@ public class PMCheckPoints {
 	
 	@Column(name = "string2")
 	String string2;
+	
+	@Column(name = "machine_id")
+	int machineId;
 
 	public int getCheckPointId() {
 		return checkPointId;
@@ -114,12 +117,20 @@ public class PMCheckPoints {
 	public void setString2(String string2) {
 		this.string2 = string2;
 	}
+	 
+	public int getMachineId() {
+		return machineId;
+	}
+
+	public void setMachineId(int machineId) {
+		this.machineId = machineId;
+	}
 
 	@Override
 	public String toString() {
-		return "PMChickPoints [checkPointId=" + checkPointId + ", itemId=" + itemId + ", checkPointName="
+		return "PMCheckPoints [checkPointId=" + checkPointId + ", itemId=" + itemId + ", checkPointName="
 				+ checkPointName + ", checkPointDesc=" + checkPointDesc + ", delStatus=" + delStatus + ", int1=" + int1
-				+ ", int2=" + int2 + ", string1=" + string1 + ", string2=" + string2 + "]";
+				+ ", int2=" + int2 + ", string1=" + string1 + ", string2=" + string2 + ", machineId=" + machineId + "]";
 	}
 	
 	

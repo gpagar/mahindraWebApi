@@ -7,5 +7,5 @@ import com.ganesh.mahindra.model.UserDetails;
 public interface UserDetailsRepository extends JpaRepository<UserDetails, Integer>{
 
 	
-	UserDetails findByEmailAndPassword(String email, String password);
+	UserDetails findByEmailAndPasswordAndDelStatus(String email, String password, int delStatus);
 }

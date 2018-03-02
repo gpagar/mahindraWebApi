@@ -25,7 +25,7 @@ public class RestApiController {
 	public UserDetails loginUser(@RequestParam("email") String email, @RequestParam("password") String password) {
 
 		UserDetails userDetails=new UserDetails();
-		userDetails=UserDetailsRepository.findByEmailAndPassword(email, password);
+		userDetails=UserDetailsRepository.findByEmailAndPasswordAndDelStatus(email, password,0);
 		
 		return userDetails;
 	}
