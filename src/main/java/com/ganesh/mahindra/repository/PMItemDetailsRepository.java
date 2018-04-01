@@ -10,4 +10,6 @@ public interface PMItemDetailsRepository extends JpaRepository<PMItemDetails, In
 
 	
 	List<PMItemDetails> findByActivityIdAndDelStatus(int activityId, int delStstaus);
+
+	List<PMItemDetails> findByDelStatus(int i);
 }

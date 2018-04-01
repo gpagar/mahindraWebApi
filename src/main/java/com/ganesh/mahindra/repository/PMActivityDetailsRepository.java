@@ -10,4 +10,6 @@ public interface PMActivityDetailsRepository extends JpaRepository<PMActivityDet
 
 	
 	List<PMActivityDetails> findByMachinIdAndDelStatus(int machinId, int delStatus);
+
+	List<PMActivityDetails> findByDelStatus(int i);
 }

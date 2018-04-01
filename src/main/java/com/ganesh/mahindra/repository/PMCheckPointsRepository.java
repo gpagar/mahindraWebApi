@@ -10,4 +10,6 @@ public interface PMCheckPointsRepository extends JpaRepository<PMCheckPoints, In
 
 	
 	List<PMCheckPoints> findByItemIdAndDelStatus(int itemId,int delStatus);
+
+	List<PMCheckPoints> findByDelStatus(int i);
 }

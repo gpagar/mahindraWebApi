@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ganesh.mahindra.model.GetPMData;
+import com.ganesh.mahindra.model.GetPaMaintainence;
 import com.ganesh.mahindra.model.Info;
 import com.ganesh.mahindra.model.MachinDetails;
 import com.ganesh.mahindra.model.MachinDetailsList;
@@ -21,6 +23,8 @@ import com.ganesh.mahindra.model.PMItemDetails;
 import com.ganesh.mahindra.model.PaMaintananceDetails;
 import com.ganesh.mahindra.model.PmRequiredValue;
 import com.ganesh.mahindra.model.UserDetails;
+import com.ganesh.mahindra.repository.GetPaMaintainenceRepository;
+import com.ganesh.mahindra.repository.GetPmDataRepository;
 import com.ganesh.mahindra.repository.MachinDetailsRepository;
 import com.ganesh.mahindra.repository.MachinMaintanaceScheduleRepository;
 import com.ganesh.mahindra.repository.PMActivityDetailsRepository;
@@ -53,6 +57,11 @@ public class PMaintanance {
 	
 	@Autowired
 	PaMaintananceDetailsRepository paMaintananceDetailsRepository;
+	
+	@Autowired
+	GetPaMaintainenceRepository getPaMaintainenceRepository;
+	@Autowired
+	GetPmDataRepository getPmDataRepository;
 	
 	@RequestMapping(value = { "/getAllPmRequiredValue" }, method = RequestMethod.GET)
 	@ResponseBody
@@ -110,6 +119,18 @@ public class PMaintanance {
 		}
 		return pMActivityDetailsList;
 	}
+	@RequestMapping(value = { "/getAllActivity" }, method = RequestMethod.GET)
+	@ResponseBody
+	public List<PMActivityDetails> getAllActivity() 
+	{
+		List<PMActivityDetails> pMActivityDetailsList=new ArrayList<>();
+		try {
+			pMActivityDetailsList=pMActivityDetailsRepository.findByDelStatus(0);
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return pMActivityDetailsList;
+	}
 	
 	
 	@RequestMapping(value = { "/getItemsByActivityId" }, method = RequestMethod.POST)
@@ -119,6 +140,13 @@ public class PMaintanance {
 		System.out.println("getItemsByActivityId");
 	
 		 return pMItemDetailsRepository.findByActivityIdAndDelStatus(activityId, 0);
+	}
+	
+	@RequestMapping(value = { "/getAllItems" }, method = RequestMethod.GET)
+	@ResponseBody
+	public List<PMItemDetails> getAllItems() 
+	{
+		 return pMItemDetailsRepository.findByDelStatus(0);
 	}
 	
 	
@@ -138,7 +166,21 @@ public class PMaintanance {
 		}
 		return checkPointList;
 	}
-	
+	@RequestMapping(value = { "/getAllCheckPoints" }, method = RequestMethod.GET)
+	@ResponseBody
+	public List<PMCheckPoints> getAllCheckPoints() 
+	{
+		List<PMCheckPoints> checkPointList = new ArrayList<PMCheckPoints>();
+		try
+		{
+			System.out.println("getCheckPointsByItemId");
+			checkPointList = pMCheckPointsRepository.findByDelStatus(0);
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return checkPointList;
+	}
 	
 	
 	@RequestMapping(value = { "/insertPMaintananceDetails" }, method = RequestMethod.POST)
@@ -193,4 +235,34 @@ public class PMaintanance {
 		return getPmMaintenancePlan;
 	}
 	
+	@RequestMapping(value = { "/getPmMaintainenceList" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<GetPaMaintainence> getPmMaintainenceList(@RequestParam("machineId")int machineId ) 
+	{
+		List<GetPaMaintainence> paMaintainenceList=new ArrayList<>();
+		try {
+		
+		 paMaintainenceList=getPaMaintainenceRepository.getPmMaintainenceList(machineId);
+		
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return paMaintainenceList;
+	}
+	@RequestMapping(value = { "/getPMList" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<GetPMData> getPMList(@RequestParam("machinId")int machineId ) 
+	{
+		List<GetPMData> paMaintainenceList=new ArrayList<GetPMData>();
+		try {
+		
+		 paMaintainenceList=getPmDataRepository.getPMList(machineId);
+		
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return paMaintainenceList;
+	}
 }
