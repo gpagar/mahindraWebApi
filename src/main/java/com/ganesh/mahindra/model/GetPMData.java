@@ -16,6 +16,9 @@ public class GetPMData implements Serializable{
 	@Column(name = "activity_id")
 	private int activityId;
 	
+	@Column(name = "int_2")
+	private int int2;
+	
 	@Column(name = "activity_name")
 	private String activityName;
 
@@ -31,6 +34,15 @@ public class GetPMData implements Serializable{
 	
 	@Column(name = "check_point_name")
 	private String checkPointName;
+
+	
+	public int getInt2() {
+		return int2;
+	}
+
+	public void setInt2(int int2) {
+		this.int2 = int2;
+	}
 
 	public int getMachinId() {
 		return machinId;

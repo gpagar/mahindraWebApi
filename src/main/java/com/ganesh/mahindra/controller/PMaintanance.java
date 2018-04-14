@@ -23,6 +23,7 @@ import com.ganesh.mahindra.model.PMItemDetails;
 import com.ganesh.mahindra.model.PaMaintananceDetails;
 import com.ganesh.mahindra.model.PmRequiredValue;
 import com.ganesh.mahindra.model.UserDetails;
+import com.ganesh.mahindra.model.WhyWhyF18;
 import com.ganesh.mahindra.repository.GetPaMaintainenceRepository;
 import com.ganesh.mahindra.repository.GetPmDataRepository;
 import com.ganesh.mahindra.repository.MachinDetailsRepository;
@@ -32,6 +33,7 @@ import com.ganesh.mahindra.repository.PMCheckPointsRepository;
 import com.ganesh.mahindra.repository.PMItemDetailsRepository;
 import com.ganesh.mahindra.repository.PaMaintananceDetailsRepository;
 import com.ganesh.mahindra.repository.PmRequiredValueRepository;
+import com.ganesh.mahindra.repository.WhyWhyF18Repository;
 
 @RestController
 public class PMaintanance {
@@ -63,6 +65,10 @@ public class PMaintanance {
 	@Autowired
 	GetPmDataRepository getPmDataRepository;
 	
+	@Autowired
+	WhyWhyF18Repository whyWhyF18Repository;
+	
+	
 	@RequestMapping(value = { "/getAllPmRequiredValue" }, method = RequestMethod.GET)
 	@ResponseBody
 	public List<PmRequiredValue> getAllPmRequiredValue() 
@@ -70,9 +76,7 @@ public class PMaintanance {
 		System.out.println("getAllPmRequiredValue");
 		return pmRequiredValueRepository.findByDelStatus(0);
 	}
-	
-	
-	
+
 	@RequestMapping(value = { "/getMachineByType" }, method = RequestMethod.POST)
 	@ResponseBody
 	public MachinDetailsList getMachineByType(@RequestParam("type")int type )
@@ -265,4 +269,28 @@ public class PMaintanance {
 		}
 		return paMaintainenceList;
 	}
+	
+	@RequestMapping(value = { "/getAllWhyWhyF18" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<WhyWhyF18> getAllWhyWhyF18(@RequestParam("machinId")int machineId) 
+	{
+		List<WhyWhyF18> whyWhyF18List=new ArrayList<WhyWhyF18>();
+		try {
+		
+			whyWhyF18List=whyWhyF18Repository.findByMachineIdAndDelStatus(machineId,0);
+		
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return whyWhyF18List;
+	}
+	@RequestMapping(value = { "/insertWhyWhyF18" }, method = RequestMethod.POST)
+	@ResponseBody
+	public WhyWhyF18 insertWhyWhyF18(@RequestBody WhyWhyF18 whyWhyF18) 
+	{
+		return whyWhyF18Repository.save(whyWhyF18);
+	}
+	
+	
 }
