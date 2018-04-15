@@ -272,7 +272,7 @@ public class PMaintanance {
 	
 	@RequestMapping(value = { "/getAllWhyWhyF18" }, method = RequestMethod.POST)
 	@ResponseBody
-	public List<WhyWhyF18> getAllWhyWhyF18(@RequestParam("machinId")int machineId) 
+	public List<WhyWhyF18> getAllWhyWhyF18(@RequestParam("machineId")int machineId) 
 	{
 		List<WhyWhyF18> whyWhyF18List=new ArrayList<WhyWhyF18>();
 		try {

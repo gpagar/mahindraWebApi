@@ -41,10 +41,10 @@ public class WhyWhyF18 implements Serializable {
 	private String problemReported;
 
 	@Column(name = "bd_time_loss")
-	private String bdTimeLoss;
+	private int bdTimeLoss;
 
 	@Column(name = "engine_loss")
-	private String engineLoss;
+	private int engineLoss;
 
 	@Column(name = "part_status")
 	private String partStatus;
@@ -170,19 +170,19 @@ public class WhyWhyF18 implements Serializable {
 		this.problemReported = problemReported;
 	}
 
-	public String getBdTimeLoss() {
+	public int getBdTimeLoss() {
 		return bdTimeLoss;
 	}
 
-	public void setBdTimeLoss(String bdTimeLoss) {
+	public void setBdTimeLoss(int bdTimeLoss) {
 		this.bdTimeLoss = bdTimeLoss;
 	}
 
-	public String getEngineLoss() {
+	public int getEngineLoss() {
 		return engineLoss;
 	}
 
-	public void setEngineLoss(String engineLoss) {
+	public void setEngineLoss(int engineLoss) {
 		this.engineLoss = engineLoss;
 	}
 
