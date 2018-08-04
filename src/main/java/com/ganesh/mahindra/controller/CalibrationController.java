@@ -51,7 +51,7 @@ public class CalibrationController {
 	@RequestMapping(value = { "/insertCalibration" }, method = RequestMethod.POST)
 	@ResponseBody
 	public TCalibration insertCalibration(@RequestBody TCalibration calibration) 
-	{ 
+	{  
 		TCalibration dataresp=null; 
 	 try {
 		 dataresp=calibrationRepository.save(calibration);
