@@ -1,114 +1,72 @@
 package com.ganesh.mahindra.model;
 
-import java.io.Serializable;
-import java.util.Date;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "why_why_f18")
-public class WhyWhyF18 implements Serializable {
+public class GetBreakdown {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+    @Id
 	private int id;
-
-	@Column(name = "machine_id")
-	private int machineId;
-
-	@Column(name = "machine_no")
-	private String machineNo;
-
-	@Column(name = "rank")
-	private int rank;
 	
-	@Column(name = "month")
+	private int machineId;
+	
+	private String machineNo;
+	
+	private String machineName;
+
 	private String month;
 
-	@Column(name = "date")
 	private String date;
 
-	@Column(name = "dept")
 	private String dept;
 
-	@Column(name = "cell_circle")
 	private String cellCircle;
 
-	@Column(name = " problem_reported")
 	private String problemReported;
 
-	@Column(name = "bd_time_loss")
 	private int bdTimeLoss;
 
-	@Column(name = "engine_loss")
-	private int engineLoss;
+	private String engineLoss;
 
-	@Column(name = "part_status")
 	private String partStatus;
 
-	@Column(name = " part_desc")
 	private String partDesc;
 
-	@Column(name = "bd_ms_pt")
 	private String bdMsPt;
 
-	@Column(name = " action")
 	private String action;
 
-	@Column(name = " why1")
 	private String why1;
 
-	@Column(name = "why2")
 	private String why2;
 
-	@Column(name = " why3")
 	private String why3;
 
-	@Column(name = " why4")
 	private String why4;
 
-	@Column(name = " why5")
 	private String why5;
 
-	@Column(name = " root_cause")
 	private String rootCause;
 
-	@Column(name = " clarification_of_cause")
 	private String clarificationOfCause;
 
-	@Column(name = "  failure_code")
 	private String failureCode;
 
-	@Column(name = "counter_measure ")
 	private String counterMeasure;
 
-	@Column(name = "category")
 	private String category;
 
-	@Column(name = "recur_non_recurr ")
 	private String recurNonRecurr;
 
-	@Column(name = "linkage_with")
 	private String linkageWith;
 
-	@Column(name = "status ")
 	private int status;
-
-	@Column(name = "ref_no")
+	
 	private String refNo;
-
-	@Column(name = "sap_notif_no ")
+	
 	private String sapNotifNo;
-
-	@Column(name = "del_status")
+	
 	private int delStatus;
 
 	private String repairedBy;
@@ -126,16 +84,8 @@ public class WhyWhyF18 implements Serializable {
 	private String subcommMember;
 
 	private String prevOccDate;
-
 	
-	public int getRank() {
-		return rank;
-	}
-
-	public void setRank(int rank) {
-		this.rank = rank;
-	}
-
+	
 	public String getRepairedBy() {
 		return repairedBy;
 	}
@@ -200,14 +150,6 @@ public class WhyWhyF18 implements Serializable {
 		this.prevOccDate = prevOccDate;
 	}
 
-	public int getMachineId() {
-		return machineId;
-	}
-
-	public void setMachineId(int machineId) {
-		this.machineId = machineId;
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -216,12 +158,28 @@ public class WhyWhyF18 implements Serializable {
 		this.id = id;
 	}
 
+	public int getMachineId() {
+		return machineId;
+	}
+
+	public void setMachineId(int machineId) {
+		this.machineId = machineId;
+	}
+
 	public String getMachineNo() {
 		return machineNo;
 	}
 
 	public void setMachineNo(String machineNo) {
 		this.machineNo = machineNo;
+	}
+
+	public String getMachineName() {
+		return machineName;
+	}
+
+	public void setMachineName(String machineName) {
+		this.machineName = machineName;
 	}
 
 	public String getMonth() {
@@ -272,11 +230,11 @@ public class WhyWhyF18 implements Serializable {
 		this.bdTimeLoss = bdTimeLoss;
 	}
 
-	public int getEngineLoss() {
+	public String getEngineLoss() {
 		return engineLoss;
 	}
 
-	public void setEngineLoss(int engineLoss) {
+	public void setEngineLoss(String engineLoss) {
 		this.engineLoss = engineLoss;
 	}
 
@@ -442,15 +400,16 @@ public class WhyWhyF18 implements Serializable {
 
 	@Override
 	public String toString() {
-		return "WhyWhyF18 [id=" + id + ", machineNo=" + machineNo + ", month=" + month + ", date=" + date + ", dept="
-				+ dept + ", cellCircle=" + cellCircle + ", problemReported=" + problemReported + ", bdTimeLoss="
-				+ bdTimeLoss + ", engineLoss=" + engineLoss + ", partStatus=" + partStatus + ", partDesc=" + partDesc
-				+ ", bdMsPt=" + bdMsPt + ", action=" + action + ", why1=" + why1 + ", why2=" + why2 + ", why3=" + why3
-				+ ", why4=" + why4 + ", why5=" + why5 + ", rootCause=" + rootCause + ", clarificationOfCause="
-				+ clarificationOfCause + ", failureCode=" + failureCode + ", counterMeasure=" + counterMeasure
-				+ ", category=" + category + ", recurNonRecurr=" + recurNonRecurr + ", linkageWith=" + linkageWith
-				+ ", status=" + status + ", refNo=" + refNo + ", sapNotifNo=" + sapNotifNo + ", delStatus=" + delStatus
-				+ "]";
+		return "GetBreakdown [id=" + id + ", machineId=" + machineId + ", machineNo=" + machineNo + ", machineName="
+				+ machineName + ", month=" + month + ", date=" + date + ", dept=" + dept + ", cellCircle=" + cellCircle
+				+ ", problemReported=" + problemReported + ", bdTimeLoss=" + bdTimeLoss + ", engineLoss=" + engineLoss
+				+ ", partStatus=" + partStatus + ", partDesc=" + partDesc + ", bdMsPt=" + bdMsPt + ", action=" + action
+				+ ", why1=" + why1 + ", why2=" + why2 + ", why3=" + why3 + ", why4=" + why4 + ", why5=" + why5
+				+ ", rootCause=" + rootCause + ", clarificationOfCause=" + clarificationOfCause + ", failureCode="
+				+ failureCode + ", counterMeasure=" + counterMeasure + ", category=" + category + ", recurNonRecurr="
+				+ recurNonRecurr + ", linkageWith=" + linkageWith + ", status=" + status + ", refNo=" + refNo
+				+ ", sapNotifNo=" + sapNotifNo + ", delStatus=" + delStatus + "]";
 	}
-
+	
+	
 }

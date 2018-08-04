@@ -9,6 +9,8 @@ import com.ganesh.mahindra.model.MachinDetails;
 public interface MachinDetailsRepository extends JpaRepository<MachinDetails, Integer>{
 	
 	List<MachinDetails> findByTypeAndDelStatus(int type, int delStatus);
+
+	MachinDetails findByMachinIdAndDelStatus(int machineId, int i);
 	
 
 }

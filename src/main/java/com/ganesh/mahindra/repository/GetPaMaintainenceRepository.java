@@ -20,7 +20,7 @@ public interface GetPaMaintainenceRepository extends JpaRepository<GetPaMaintain
 			"  p.item_id,i.item_name,\n" + 
 			"  p.check_point_id,ch.check_point_name,\n" + 
 			"  p.method,\n" + 
-			"  p.required_value,rq.required_value as req_val_name,\n" + 
+			"  p.required_value,"+
 			"  p.date1,\n" + 
 			"  p.date1_observation,\n" + 
 			"  p.date1_photo,\n" + 
@@ -36,8 +36,8 @@ public interface GetPaMaintainenceRepository extends JpaRepository<GetPaMaintain
 			"  p.int_2,\n" + 
 			"  p.string1,\n" + 
 			"  p.string2,\n" + 
-			"  p.remark from pa_maintanance p,machin_details d,machin_activity a,item_details i,check_point ch,pmrequiredvalue rq  where \n" + 
-			"  p.required_value=required_value_id and p.check_point_id=ch.check_point_id And p.item_id=i.item_id And p.activity_id=a.activity_id And p.machin_id=d.machin_id And p.del_status=0 and p.machin_id=:machinId",nativeQuery=true)
+			"  p.remark from pa_maintanance p,machin_details d,machin_activity a,item_details i,check_point ch  where \n" + 
+			"  p.check_point_id=ch.check_point_id And p.item_id=i.item_id And p.activity_id=a.activity_id And p.machin_id=d.machin_id And p.del_status=0 and p.machin_id=:machinId",nativeQuery=true)
 	List<GetPaMaintainence> getPmMaintainenceList(@Param("machinId")int machinId);
 
 }
