@@ -19,7 +19,7 @@ public class MachinDetails {
 	@Column(name = "machin_name ")
 	String machinName;
 	
-	@Column(name = "machin_no")
+	@Column(name = "machin_no",nullable=true)
 	String machinNo;
 	
 	@Column(name = "type")
