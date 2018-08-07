@@ -2149,4 +2149,24 @@ public class PMaintanance {
 		
 	}
 	
+	
+	@RequestMapping(value = { "/updatePmDetailList" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<PaMaintananceDetails> insertPMaintananceDetails(@RequestBody List<PaMaintananceDetails> paMaintananceDetails) 
+	{
+		List<PaMaintananceDetails> save = new ArrayList<>();
+		
+		try {
+			
+			
+			save = paMaintananceDetailsRepository.save(paMaintananceDetails);
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return save;
+	}
+	
 }
