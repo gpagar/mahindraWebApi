@@ -23,6 +23,8 @@ public interface PMItemDetailsRepository extends JpaRepository<PMItemDetails, In
 	@Transactional
 	@Query("Delete from PMItemDetails m   WHERE m.itemId=:itemId")
 	int deleteItemId(@Param("itemId")int itemId );
+
+	PMItemDetails findByItemId(int itemId);
 	
  
 }

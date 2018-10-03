@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.PostLoad;
+import javax.persistence.Transient;
 
 @Entity
 public class GetPMData implements Serializable{
@@ -35,7 +37,17 @@ public class GetPMData implements Serializable{
 	@Column(name = "check_point_name")
 	private String checkPointName;
 
-	
+	@Transient
+	private int method;
+
+	public int getMethod() {
+		return method;
+	}
+
+	public void setMethod(int method) {
+		this.method = method;
+	}
+
 	public int getInt2() {
 		return int2;
 	}

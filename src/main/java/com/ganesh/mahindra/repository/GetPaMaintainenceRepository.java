@@ -33,11 +33,11 @@ public interface GetPaMaintainenceRepository extends JpaRepository<GetPaMaintain
 			"  p.status,\n" + 
 			"  p.del_status,\n" + 
 			"  p.int_1,\n" + 
-			"  p.int_2,\n" + 
+			"  p.int_2, p.int_3,\n" + 
 			"  p.string1,\n" + 
 			"  p.string2,\n" + 
 			"  p.remark from pa_maintanance p,machin_details d,machin_activity a,item_details i,check_point ch  where \n" + 
-			"  p.check_point_id=ch.check_point_id And p.item_id=i.item_id And p.activity_id=a.activity_id And p.machin_id=d.machin_id And p.del_status=0 and p.machin_id=:machinId",nativeQuery=true)
-	List<GetPaMaintainence> getPmMaintainenceList(@Param("machinId")int machinId);
+			"  p.check_point_id=ch.check_point_id And p.item_id=i.item_id And p.activity_id=a.activity_id And p.machin_id=d.machin_id And p.del_status=0 and p.machin_id=:machinId and p.int_3=:deptId",nativeQuery=true)
+	List<GetPaMaintainence> getPmMaintainenceList(@Param("machinId")int machinId,@Param("deptId")int deptId);
 
 }

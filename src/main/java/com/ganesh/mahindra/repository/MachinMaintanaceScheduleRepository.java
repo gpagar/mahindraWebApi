@@ -8,4 +8,7 @@ public interface MachinMaintanaceScheduleRepository extends JpaRepository<Machin
 
 	MachinMaintanaceSchedule findByMachinIdAndDelStatus(int machineId, int delStatus);
 
+
+	MachinMaintanaceSchedule findByMachinId(int machineId);
+
 }

@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.ganesh.mahindra.model.PMActivityDetails;
+import com.ganesh.mahindra.model.PMItemDetails;
 
 public interface PMActivityDetailsRepository extends JpaRepository<PMActivityDetails, Integer>{
 
@@ -23,6 +24,9 @@ public interface PMActivityDetailsRepository extends JpaRepository<PMActivityDet
 	@Transactional
 	@Query("Delete from PMActivityDetails m   WHERE m.activityId=:activityId")
 	int deleteMachinId(@Param("activityId")int activityId );
+
+	PMActivityDetails findByActivityId(int activityId);
+
 	
 	
 	 

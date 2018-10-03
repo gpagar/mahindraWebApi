@@ -16,7 +16,10 @@ public interface WhyWhyF18Repository extends JpaRepository<WhyWhyF18, Integer>{
 
 	WhyWhyF18 findById(int id);
 
-	@Query(value="Select id,machine_id,machine_no,month,date,dept,rank,cell_circle,problem_reported,bd_time_loss,engine_loss,part_status,part_desc,bd_ms_pt,action,why1,why2,why3,why4,why5,root_cause,clarification_of_cause,failure_code,counter_measure,category,recur_non_recurr,linkage_with,status,ref_no,sap_notif_no,del_status,repaired_by,repair_start_time,repair_finish_time,idea,prepared_by,mgrorhead,subcomm_member,prev_occ_date from why_why_f18 where del_status=0 and month  between :fromMonth and :toMonth order by date",nativeQuery=true)
-	List<WhyWhyF18> getAllBreakdownHistory(@Param("fromMonth")String fromMonth,@Param("toMonth") String toMonth);
+	@Query(value="Select id,machine_id,machine_no,machine_type,month,date,dept,rank,cell_circle,problem_reported,bd_time_loss,engine_loss,part_status,part_desc,bd_ms_pt,action,why1,why2,why3,why4,why5,root_cause,clarification_of_cause,failure_code,counter_measure,category,recur_non_recurr,linkage_with,status,ref_no,sap_notif_no,del_status,repaired_by,repair_start_time,repair_finish_time,idea,prepared_by,mgrorhead,subcomm_member,prev_occ_date from why_why_f18 where del_status=0 and dept=:deptId and month  between :fromMonth and :toMonth order by date",nativeQuery=true)
+	List<WhyWhyF18> getAllBreakdownHistory(@Param("fromMonth")String fromMonth,@Param("toMonth") String toMonth,@Param("deptId") int deptId);
+
+	@Query(value="Select * from why_why_f18 where del_status=:delStatus and dept IN (:deptId)",nativeQuery=true)
+	List<WhyWhyF18> findByDeptInAndDelStatus(@Param("deptId")List<Integer> deptId,@Param("delStatus") int delStatus);
 
 }

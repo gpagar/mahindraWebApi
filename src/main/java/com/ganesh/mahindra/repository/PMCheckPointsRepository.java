@@ -23,6 +23,8 @@ public interface PMCheckPointsRepository extends JpaRepository<PMCheckPoints, In
 	@Transactional
 	@Query("Delete from PMCheckPoints m   WHERE m.checkPointId=:machinCheckPoint")
 	int deleteCheckpoints(@Param("machinCheckPoint")int machinCheckPoint );
+
+	PMCheckPoints findByCheckPointId(int checkpointId);
 	
 	
 	 

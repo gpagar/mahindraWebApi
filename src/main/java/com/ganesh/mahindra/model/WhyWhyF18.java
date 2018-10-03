@@ -23,6 +23,9 @@ public class WhyWhyF18 implements Serializable {
 
 	@Column(name = "machine_id")
 	private int machineId;
+	
+	@Column(name = "machine_type")
+	private int machineType;
 
 	@Column(name = "machine_no")
 	private String machineNo;
@@ -46,10 +49,10 @@ public class WhyWhyF18 implements Serializable {
 	private String problemReported;
 
 	@Column(name = "bd_time_loss")
-	private int bdTimeLoss;
+	private String bdTimeLoss;
 
 	@Column(name = "engine_loss")
-	private int engineLoss;
+	private String engineLoss;
 
 	@Column(name = "part_status")
 	private String partStatus;
@@ -128,6 +131,14 @@ public class WhyWhyF18 implements Serializable {
 	private String prevOccDate;
 
 	
+	public int getMachineType() {
+		return machineType;
+	}
+
+	public void setMachineType(int machineType) {
+		this.machineType = machineType;
+	}
+
 	public int getRank() {
 		return rank;
 	}
@@ -264,19 +275,19 @@ public class WhyWhyF18 implements Serializable {
 		this.problemReported = problemReported;
 	}
 
-	public int getBdTimeLoss() {
+	public String getBdTimeLoss() {
 		return bdTimeLoss;
 	}
 
-	public void setBdTimeLoss(int bdTimeLoss) {
+	public void setBdTimeLoss(String bdTimeLoss) {
 		this.bdTimeLoss = bdTimeLoss;
 	}
 
-	public int getEngineLoss() {
+	public String getEngineLoss() {
 		return engineLoss;
 	}
 
-	public void setEngineLoss(int engineLoss) {
+	public void setEngineLoss(String engineLoss) {
 		this.engineLoss = engineLoss;
 	}
 

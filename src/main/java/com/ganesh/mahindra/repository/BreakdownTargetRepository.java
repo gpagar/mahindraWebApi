@@ -15,7 +15,7 @@ import com.ganesh.mahindra.model.BreakdownTarget;
 @Repository
 public interface BreakdownTargetRepository extends JpaRepository<BreakdownTarget, Integer>{
 
-	List<BreakdownTarget> findByStatusAndGraphType(int status, int graphType);
+	List<BreakdownTarget> findByStatusAndGraphTypeAndExInt(int status, int graphType,int deptId);
 
 	@Transactional
 	@Modifying

@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tbm_machine")
+//@Table(name="tbm_machine")
 public class TbmMachine implements Serializable{
 	
 	@Id
@@ -18,10 +18,13 @@ public class TbmMachine implements Serializable{
 	@Column(name = "machine_id")
 	private int machineId;
 	
+	@Column(name = "machine_name")
 	private String machineName;
 	
+	@Column(name = "machine_no")
 	private String machineNo;
 	
+	@Column(name = "del_status")
 	private int delStatus;
 
 	public int getMachineId() {

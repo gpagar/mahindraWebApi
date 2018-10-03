@@ -53,53 +53,92 @@ public class PmMastersApiController {
 		return info;
 	}
 	
+	@RequestMapping(value = { "/getPmMachinePlanById" }, method = RequestMethod.POST)
+	@ResponseBody
+	public MachinMaintanaceSchedule getPmMachinePlanById(@RequestParam("machineId")int machineId)
+	{
+		MachinMaintanaceSchedule machinMaintanaceScheduleRes=null;
+		try {
+			machinMaintanaceScheduleRes=machinMaintanaceScheduleRepository.findByMachinIdAndDelStatus(machineId,0);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return machinMaintanaceScheduleRes;
+	}
+	
 	
 	@RequestMapping(value = { "/insertPmMachine" }, method = RequestMethod.POST)
 	@ResponseBody
-	public Info insertPmMachine(@RequestBody MachinDetails machinDetails)
+	public MachinDetails insertPmMachine(@RequestBody MachinDetails machinDetails)
 	{
 		
-		Info info=new Info();
-		machinDetailsRepository.save(machinDetails);
+		//Info info=new Info();
+		MachinDetails machinDetailsRes=machinDetailsRepository.save(machinDetails);
 		
-		return info;
+		return machinDetailsRes;
 	}
 	
 
 	@RequestMapping(value = { "/insertPmActivity" }, method = RequestMethod.POST)
 	@ResponseBody
-	public Info insertPmActivity(@RequestBody PMActivityDetails pMActivityDetails)
+	public PMActivityDetails insertPmActivity(@RequestBody PMActivityDetails pMActivityDetails)
 	{
 		
-		Info info=new Info();
-		pMActivityDetailsRepository.save(pMActivityDetails);
+		//Info info=new Info();
+		 PMActivityDetails pMActivityDetailsRes=pMActivityDetailsRepository.save(pMActivityDetails);
 		
-		return info;
+		return pMActivityDetailsRes;
 	}
-	
+	@RequestMapping(value = { "/getPmActivity" }, method = RequestMethod.POST)
+	@ResponseBody
+	public PMActivityDetails getPmActivity(@RequestParam("activityId")int activityId)	{
+		
+		//Info info=new Info();
+		 PMActivityDetails pMActivityDetailsRes=pMActivityDetailsRepository.findByActivityId(activityId);
+		
+		return pMActivityDetailsRes;
+	}
 	
 	@RequestMapping(value = { "/insertPmItem" }, method = RequestMethod.POST)
 	@ResponseBody
-	public Info insertPmItem(@RequestBody PMItemDetails pMItemDetails)
+	public PMItemDetails insertPmItem(@RequestBody PMItemDetails pMItemDetails)
 	{
 		
-		Info info=new Info();
-		pMItemDetailsRepository.save(pMItemDetails);
+		//Info info=new Info();
+		PMItemDetails pMItemDetailsRes=pMItemDetailsRepository.save(pMItemDetails);
 		
-		return info;
+		return pMItemDetailsRes;
 	}
-	
+	@RequestMapping(value = { "/getPmItem" }, method = RequestMethod.POST)
+	@ResponseBody
+	public PMItemDetails getPmItem(@RequestParam("itemId")int itemId)	{
+		
+		//Info info=new Info();
+		PMItemDetails pMItemDetailsRes=pMItemDetailsRepository.findByItemId(itemId);
+		
+		return pMItemDetailsRes;
+	}
 	@RequestMapping(value = { "/insertPmCheckpoint" }, method = RequestMethod.POST)
 	@ResponseBody
-	public Info insertPmCheckpoint(@RequestBody PMCheckPoints pMCheckPoints)
+	public PMCheckPoints insertPmCheckpoint(@RequestBody PMCheckPoints pMCheckPoints)
 	{
 		
-		Info info=new Info();
-		pMCheckPointsRepository.save(pMCheckPoints);
+		//Info info=new Info();
+		PMCheckPoints pMCheckPointsRes=pMCheckPointsRepository.save(pMCheckPoints);
 		
-		return info;
+		return pMCheckPointsRes;
 	}
-	
+	@RequestMapping(value = { "/getPmCheckpoints" }, method = RequestMethod.POST)
+	@ResponseBody
+	public PMCheckPoints getPmCheckpoints(@RequestParam("checkpointId")int checkpointId)	{
+		
+		//Info info=new Info();
+		PMCheckPoints pMCheckPointsRes=pMCheckPointsRepository.findByCheckPointId(checkpointId);
+		
+		return pMCheckPointsRes;
+	}
 	
 	
 	@RequestMapping(value = { "/deleteMachinId" }, method = RequestMethod.POST)

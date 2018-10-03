@@ -79,6 +79,9 @@ public class PaMaintananceDetails {
 
 	@Column(name = "int_2")
 	int int2;
+	
+	@Column(name = "int_3")
+	int int3;
 
 	@Column(name = "string1")
 	String string1;
@@ -88,6 +91,14 @@ public class PaMaintananceDetails {
 
 	@Column(name = "remark")
 	String remark;
+    
+	public int getInt3() {
+		return int3;
+	}
+
+	public void setInt3(int int3) {
+		this.int3 = int3;
+	}
 
 	public int getPaMaintId() {
 		return paMaintId;
