@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -18,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ganesh.mahindra.model.TCalibration;
 import com.ganesh.mahindra.model.calibration.CalibrationDetails;
 import com.ganesh.mahindra.model.calibration.EqCalDetails;
+import com.ganesh.mahindra.model.calibration.TCalibaration;
+import com.ganesh.mahindra.model.calibration.TCalibarationRepository;
 import com.ganesh.mahindra.repository.calibration.CalibrationRepository;
 import com.ganesh.mahindra.repository.calibration.GetCalibrationRepository;
 import com.ganesh.mahindra.repository.calibration.MachineEqCalRepository;
@@ -33,6 +36,9 @@ public class CalibrationController {
 	
 	@Autowired
 	CalibrationRepository calibrationRepository;
+	
+	@Autowired
+	TCalibarationRepository tCalibarationRepository;
 	
 	@RequestMapping(value = { "/insertMachineEqCal" }, method = RequestMethod.POST)
 	@ResponseBody
@@ -63,13 +69,29 @@ public class CalibrationController {
 		return dataresp;
 	}
 	
-	@RequestMapping(value = { "/getCalibrationData" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/getCalibrationData" }, method = RequestMethod.POST)
 	@ResponseBody
-	public List<CalibrationDetails> getCalibrationData() 
+	public List<CalibrationDetails> getCalibrationData(@RequestParam("deptId") int deptId) 
 	{
-		List<CalibrationDetails> eqCalDetailsList=getCalibrationRepository.findCalibrationData();
+		List<CalibrationDetails> eqCalDetailsList=getCalibrationRepository.findCalibrationData(deptId);
 		
 		
 		return eqCalDetailsList;
 	}
+	
+	@RequestMapping(value = { "/saveTCalibaratoin" }, method = RequestMethod.POST)
+	@ResponseBody
+	public TCalibaration saveTCalibaratoin(@RequestBody TCalibaration tCalibaration) 
+	{
+		TCalibaration save=tCalibarationRepository.save(tCalibaration);
+		
+		
+		return save;
+	}
+	
+	
+	
 }
+
+
+
