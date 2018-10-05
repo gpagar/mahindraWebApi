@@ -20,10 +20,12 @@ import com.ganesh.mahindra.model.tbm.GetTbmHistory;
 import com.ganesh.mahindra.model.tbm.PostTbm;
 import com.ganesh.mahindra.model.tbm.TbmData;
 import com.ganesh.mahindra.model.tbm.TbmMachine;
+import com.ganesh.mahindra.model.tbm.UpdateTbm;
 import com.ganesh.mahindra.repository.tbm.PostTbmRepository;
 import com.ganesh.mahindra.repository.tbm.TbmDataRepository;
 import com.ganesh.mahindra.repository.tbm.TbmHistoryRepository;
 import com.ganesh.mahindra.repository.tbm.TbmMachineRepository;
+import com.ganesh.mahindra.repository.tbm.UpdateTbmRepository;
 
 @RestController
 public class TbmController {
@@ -41,6 +43,9 @@ public class TbmController {
 	@Autowired
 	TbmHistoryRepository tbmHistoryRepository;
 	
+	@Autowired
+	UpdateTbmRepository updateTbmRepository;
+	
 	@RequestMapping(value = { "/getAllTbmMachines" }, method = RequestMethod.GET)
 	@ResponseBody
 	public List<TbmMachine> getAllTbmMachines() 
@@ -48,7 +53,7 @@ public class TbmController {
 		List<TbmMachine> machineList=null;
 		
 		try {
-			machineList=tbmMachineRepository.findByDelStatus(0);
+			machineList=tbmMachineRepository.findByDelStatusOrderByMachineName(0);
 			
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -83,6 +88,20 @@ public class TbmController {
 			e.printStackTrace();
 		}
 		return postTbmRes;
+	}
+	@RequestMapping(value = { "/updateTbm" }, method = RequestMethod.POST)
+	@ResponseBody
+	public UpdateTbm updateTbm(@RequestBody UpdateTbm updateTbm) 
+	{
+		UpdateTbm updateTbmRes=null;
+		
+		try {
+			updateTbmRes=updateTbmRepository.saveAndFlush(updateTbm);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return updateTbmRes;
 	}
 	@RequestMapping(value = { "/getTbmHistory" }, method = RequestMethod.POST)
 	@ResponseBody

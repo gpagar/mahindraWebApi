@@ -12,4 +12,6 @@ public interface TbmMachineDetailsRepository extends JpaRepository<TbmMachineDet
 	TbmMachineDetails save(TbmMachineDetails tbmMachineDetails);
 	
 	List<TbmMachineDetails> findByDelStatus(int delStatus);
+
+	List<TbmMachineDetails> findByDelStatusOrderByMachineName(int i);
 }

@@ -76,7 +76,7 @@ public class TbmMasterApiController {
 	{
 		
 		
-		return tbmMachineDetailsRepository.findByDelStatus(0);
+		return tbmMachineDetailsRepository.findByDelStatusOrderByMachineName(0);
 	}
 	
 	
