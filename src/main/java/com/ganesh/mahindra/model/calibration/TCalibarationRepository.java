@@ -14,8 +14,30 @@ public interface TCalibarationRepository extends JpaRepository<TCalibaration, In
 			",file_name from t_mach_eq_calibration where del_status=0 and dept_id=:deptId group by m_cal_id",nativeQuery=true)
 	List<TCalibaration> getLastRecordOfEquepmentFroEdit(@Param("deptId") int deptId);
 
-	@Query(value="select id,eq_name,sr_no,card_no,machine_no,line,frequency,last_cal_date,calibration_done_date,status,del_status,m_cal_id,dept_id,inta,intb \r\n" + 
-			",file_name from t_mach_eq_calibration where del_status=0 and dept_id=:deptId and calibration_done_date between :fromDate and :toDate",nativeQuery=true)
+	@Query(value="select\r\n" + 
+			"        t.id,\r\n" + 
+			"        m.eq_name,\r\n" + 
+			"        m.sr_no,\r\n" + 
+			"        m.card_no,\r\n" + 
+			"        m.machine_no,\r\n" + 
+			"        m.line,\r\n" + 
+			"        t.frequency,\r\n" + 
+			"        t.last_cal_date,\r\n" + 
+			"        t.calibration_done_date,\r\n" + 
+			"        t.status,\r\n" + 
+			"        t.del_status,\r\n" + 
+			"        t.m_cal_id,\r\n" + 
+			"        t.dept_id,\r\n" + 
+			"        t.inta,\r\n" + 
+			"        t.intb   ,\r\n" + 
+			"        t.file_name \r\n" + 
+			"    from\r\n" + 
+			"        t_mach_eq_calibration t,\r\n" + 
+			"        m_mach_eq_cal m\r\n" + 
+			"    where\r\n" + 
+			"        t.del_status=0 \r\n" + 
+			"        and t.dept_id=:deptId \r\n" + 
+			"        and t.calibration_done_date between :fromDate and :toDate and t.m_cal_id=m.id",nativeQuery=true)
 	List<TCalibaration> getHistoryOfCablibaration(@Param("deptId")int deptId,
 			@Param("fromDate")String fromDate, @Param("toDate")String toDate);
 
