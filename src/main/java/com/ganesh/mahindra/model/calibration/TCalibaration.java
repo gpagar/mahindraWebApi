@@ -32,7 +32,7 @@ public class TCalibaration {
 	@Column(name = "machine_no")
 	String machineNo;
 
-	@Column(name = " line")
+	@Column(name = "line")
 	String line;
 	
 	@Column(name = " frequency")
@@ -61,6 +61,9 @@ public class TCalibaration {
 	
 	@Column(name = "intb")
 	int int2;
+	
+	@Column(name = "file_name")
+	String fileName;
 
 	public int getId() {
 		return id;
@@ -187,12 +190,21 @@ public class TCalibaration {
 		this.frequency = frequency;
 	}
 
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
 	@Override
 	public String toString() {
 		return "TCalibaration [id=" + id + ", eqName=" + eqName + ", srNo=" + srNo + ", cardNo=" + cardNo
 				+ ", machineNo=" + machineNo + ", line=" + line + ", frequency=" + frequency + ", lastCalDate="
 				+ lastCalDate + ", calibrationDoneDate=" + calibrationDoneDate + ", status=" + status + ", delStatus="
-				+ delStatus + ", mCalId=" + mCalId + ", deptId=" + deptId + ", int1=" + int1 + ", int2=" + int2 + "]";
+				+ delStatus + ", mCalId=" + mCalId + ", deptId=" + deptId + ", int1=" + int1 + ", int2=" + int2
+				+ ", fileName=" + fileName + "]";
 	}
  
 	 

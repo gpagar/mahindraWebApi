@@ -24,29 +24,26 @@ public interface GetCalibrationRepository extends JpaRepository<CalibrationDetai
 			"            t_mach_eq_calibration.calibration_done_date  \n" + 
 			"        from\n" + 
 			"            t_mach_eq_calibration\n" + 
-			"        where\n" + 
-			"            t_mach_eq_calibration.m_cal_id=t.id \n" + 
-			"            and t_mach_eq_calibration.id = (select max(ct.id) from t_mach_eq_calibration ct where ct.dept_id=:deptId and ct.del_status=0)),\n" + 
+			"        where \n" + 
+			"            t_mach_eq_calibration.id = (select max(ct.id) from t_mach_eq_calibration ct where ct.dept_id=:deptId and ct.del_status=0 and ct.m_cal_id=t.id)),\n" + 
 			"            (select s.last_cal_date  \n" + 
 			"        from\n" + 
 			"            m_mach_eq_cal s \n" + 
 			"        where\n" + 
-			"            s.id=t.id and s.del_status=0)) as last_cal_date,\n" + 
+			"            s.id=t.id)) as last_cal_date,\n" + 
 			"        t.del_status,\n" + 
 			"        coalesce((select\n" + 
 			"            (DATE_ADD(t_mach_eq_calibration.calibration_done_date,\n" + 
 			"            INTERVAL t.frequency DAY))  \n" + 
 			"        from\n" + 
 			"            t_mach_eq_calibration\n" + 
-			"        where\n" + 
-			"            t_mach_eq_calibration.m_cal_id=t.id \n" + 
-			"            and t_mach_eq_calibration.id = (select max(ct.id) from t_mach_eq_calibration ct where ct.dept_id=:deptId and ct.del_status=0)),\n" + 
-			"            (select (DATE_ADD(t.last_cal_date,\n" + 
+			"        where \n" + 
+			"            t_mach_eq_calibration.id = (select max(ct.id) from t_mach_eq_calibration ct where ct.dept_id=:deptId and ct.del_status=0 and ct.m_cal_id=t.id)), (select (DATE_ADD(t.last_cal_date,\n" + 
 			"            INTERVAL t.frequency DAY))  \n" + 
 			"        from\n" + 
 			"            m_mach_eq_cal s \n" + 
 			"        where\n" + 
-			"            s.id=t.id and s.del_status=0)) as next_cal_date \n" + 
+			"            s.id=t.id)) as next_cal_date \n" + 
 			"    from\n" + 
 			"        m_mach_eq_cal t \n" + 
 			"    where\n" + 
