@@ -72,11 +72,24 @@ public class TbmMasterApiController {
 	
 	@RequestMapping(value = { "/getTbmMachine" }, method = RequestMethod.GET)
 	@ResponseBody
-	public List<TbmMachineDetails>  getTbmMachine() 
+	public List<TbmMachineDetails>  getTbmMachine(@RequestParam("deptId")int deptId) 
 	{
 		
 		
-		return tbmMachineDetailsRepository.findByDelStatusOrderByMachineName(0);
+		return tbmMachineDetailsRepository.findByInt1AndDelStatus(deptId,0);
+	}
+	
+	@RequestMapping(value = { "/getTbmByMachineId" }, method = RequestMethod.POST)
+	@ResponseBody
+	public  TbmMachineDetails   getTbmByMachineId(@RequestParam("machineId")int machineId ) 
+	{
+		
+		System.out.println("machineId  "+machineId);
+	
+		 
+	
+		 
+		return tbmMachineDetailsRepository.findByDelStatusAndMachineId(0, machineId);
 	}
 	
 	
@@ -94,5 +107,34 @@ public class TbmMasterApiController {
 			System.out.println(e.getMessage());// TODO: handle exception
 		}
 		return tbmMachineLocationList;
+	}
+	
+	@RequestMapping(value = { "/getLocationByLocationId" }, method = RequestMethod.POST)
+	@ResponseBody
+	public TbmMachineLocation  getLocationByLocationId(@RequestParam("locationId")int locationId ) 
+	{
+		
+		System.out.println("locationId  "+locationId);
+		 
+		return tbmMachineLocationRepository.findByLocationId(locationId);
+	}
+	
+	
+	@RequestMapping(value = { "/getTbmMachineitem" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<TbmMachineItem> insertTbmMachineitem(@RequestParam("locationId")int locationId )
+	{
+		 
+	 
+		return tbmMachineItemRepository.findByDelStatusAndLocationId(0, locationId);
+	}
+	
+	@RequestMapping(value = { "/getTbmMachineItemByItemId" }, method = RequestMethod.POST)
+	@ResponseBody
+	public TbmMachineItem getTbmMachineItemByItemId(@RequestParam("itemId")int itemId )
+	{
+		 
+	 
+		return tbmMachineItemRepository.findByDelStatusAndItemId(0, itemId);
 	}
 }

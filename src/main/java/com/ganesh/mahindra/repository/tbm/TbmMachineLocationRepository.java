@@ -12,4 +12,6 @@ public interface TbmMachineLocationRepository extends JpaRepository<TbmMachineLo
 	TbmMachineLocation save(TbmMachineLocation tbmMachineLocation);
 	
 	List<TbmMachineLocation> findByDelStatusAndMachineId(int delStatus, int machineId);
+
+	TbmMachineLocation findByLocationId(int locationId);
 }

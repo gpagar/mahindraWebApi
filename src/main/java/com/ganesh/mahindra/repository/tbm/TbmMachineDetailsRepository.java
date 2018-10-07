@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.ganesh.mahindra.model.tbm.TbmMachineDetails;
+import com.ganesh.mahindra.model.tbm.TbmMachineLocation;
 
 public interface TbmMachineDetailsRepository extends JpaRepository<TbmMachineDetails, Integer>{
 
@@ -13,5 +14,7 @@ public interface TbmMachineDetailsRepository extends JpaRepository<TbmMachineDet
 	
 	List<TbmMachineDetails> findByDelStatus(int delStatus);
 
-	List<TbmMachineDetails> findByDelStatusOrderByMachineName(int i);
+	TbmMachineDetails findByDelStatusAndMachineId(int delStatus, int machineId);
+
+	List<TbmMachineDetails> findByInt1AndDelStatus(int deptId, int delStatus);
 }
