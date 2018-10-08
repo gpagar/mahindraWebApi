@@ -10,9 +10,40 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface TCalibarationRepository extends JpaRepository<TCalibaration, Integer>{
 
-	@Query(value="select id,eq_name,sr_no,card_no,machine_no,line,frequency,last_cal_date,calibration_done_date,status,del_status,m_cal_id,dept_id,inta,intb\r\n" + 
+	/*@Query(value="select id,eq_name,sr_no,card_no,machine_no,line,frequency,last_cal_date,calibration_done_date,status,del_status,m_cal_id,dept_id,inta,intb\r\n" + 
 			",file_name from t_mach_eq_calibration where del_status=0 and dept_id=:deptId and id in (SELECT max(c.id) FROM t_mach_eq_calibration c where c.m_cal_id=m_cal_id GROUP BY m_cal_id ) order by id desc\r\n" + 
-			"",nativeQuery=true)
+			"",nativeQuery=true)*/
+	@Query(value="select\r\n" + 
+			"        id,\r\n" + 
+			"        eq_name,\r\n" + 
+			"        sr_no,\r\n" + 
+			"        card_no,\r\n" + 
+			"        machine_no,\r\n" + 
+			"        line,\r\n" + 
+			"        frequency,\r\n" + 
+			"        last_cal_date,\r\n" + 
+			"        calibration_done_date,\r\n" + 
+			"        status,\r\n" + 
+			"        del_status,\r\n" + 
+			"        m_cal_id,\r\n" + 
+			"        dept_id,\r\n" + 
+			"        inta,\r\n" + 
+			"        intb  ,\r\n" + 
+			"        file_name \r\n" + 
+			"    from\r\n" + 
+			"        t_mach_eq_calibration \r\n" + 
+			"    where\r\n" + 
+			"        del_status=0 \r\n" + 
+			"        and id in (\r\n" + 
+			"            SELECT\r\n" + 
+			"                max(c.id) \r\n" + 
+			"            FROM\r\n" + 
+			"                t_mach_eq_calibration c \r\n" + 
+			"            where\r\n" + 
+			"                c.del_status=0 and dept_id=:deptId \r\n" + 
+			"            GROUP BY\r\n" + 
+			"                c.m_cal_id\r\n" + 
+			"        )  ",nativeQuery=true)
 	List<TCalibaration> getLastRecordOfEquepmentFroEdit(@Param("deptId") int deptId);
 
 	@Query(value="select\r\n" + 
