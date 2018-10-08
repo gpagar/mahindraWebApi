@@ -21,7 +21,7 @@ public interface PMItemDetailsRepository extends JpaRepository<PMItemDetails, In
 
 	@Modifying
 	@Transactional
-	@Query("Delete from PMItemDetails m   WHERE m.itemId=:itemId")
+	@Query("update PMItemDetails m set m.delStatus=1  WHERE m.itemId=:itemId")
 	int deleteItemId(@Param("itemId")int itemId );
 
 	PMItemDetails findByItemId(int itemId);

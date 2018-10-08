@@ -40,11 +40,22 @@ public class EqCalDetails implements Serializable{
 	@Column(name = "frequency")
 	private int frequency;
 	
+	@Column(name = "dept_id")
+	private int deptId;
+	
 	@Column(name = "last_cal_date")
 	private Date lastCalDate;
 	
 	@Column(name = "del_status")
 	private int delStatus;
+
+	public int getDeptId() {
+		return deptId;
+	}
+
+	public void setDeptId(int deptId) {
+		this.deptId = deptId;
+	}
 
 	public int getId() {
 		return id;
@@ -101,11 +112,11 @@ public class EqCalDetails implements Serializable{
 	public void setFrequency(int frequency) {
 		this.frequency = frequency;
 	}
+	@JsonFormat(locale = "hi",timezone = "Asia/Kolkata", pattern = "dd-MM-yyyy")
 
 	public Date getLastCalDate() {
 		return lastCalDate;
 	}
-	@JsonFormat(locale = "hi",timezone = "Asia/Kolkata", pattern = "yyyy-MM-dd")
 	public void setLastCalDate(Date lastCalDate) {
 		this.lastCalDate = lastCalDate;
 	}

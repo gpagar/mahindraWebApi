@@ -12,6 +12,7 @@ public interface TbmMachineRepository extends JpaRepository<TbmMachine, Integer>
 
 	List<TbmMachine> findByDelStatus(int i);
 
-	List<TbmMachine> findByDelStatusOrderByMachineName(int i);
+
+	List<TbmMachine> findByDelStatusAndInt1OrderByMachineName(int i, int deptId);
 
 }

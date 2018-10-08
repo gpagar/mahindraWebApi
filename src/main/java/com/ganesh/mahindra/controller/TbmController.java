@@ -46,14 +46,14 @@ public class TbmController {
 	@Autowired
 	UpdateTbmRepository updateTbmRepository;
 	
-	@RequestMapping(value = { "/getAllTbmMachines" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/getAllTbmMachines" }, method = RequestMethod.POST)
 	@ResponseBody
-	public List<TbmMachine> getAllTbmMachines() 
+	public List<TbmMachine> getAllTbmMachines(@RequestParam("deptId")int deptId) 
 	{
 		List<TbmMachine> machineList=null;
 		
 		try {
-			machineList=tbmMachineRepository.findByDelStatusOrderByMachineName(0);
+			machineList=tbmMachineRepository.findByDelStatusAndInt1OrderByMachineName(0,deptId);
 			
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -105,12 +105,12 @@ public class TbmController {
 	}
 	@RequestMapping(value = { "/getTbmHistory" }, method = RequestMethod.POST)
 	@ResponseBody
-	public List<GetTbmHistory> getTbmHistory(@RequestParam("fromYear")int fromYear,@RequestParam("toYear")int toYear) 
+	public List<GetTbmHistory> getTbmHistory(@RequestParam("deptId")int deptId,@RequestParam("fromYear")int fromYear,@RequestParam("toYear")int toYear) 
 	{
 		List<GetTbmHistory> tbmDataList=null;
 		
 		try {
-			tbmDataList=tbmHistoryRepository.getTbmHistory(fromYear,toYear);
+			tbmDataList=tbmHistoryRepository.getTbmHistory(deptId,fromYear,toYear);
 			
 		}catch (Exception e) {
 			e.printStackTrace();

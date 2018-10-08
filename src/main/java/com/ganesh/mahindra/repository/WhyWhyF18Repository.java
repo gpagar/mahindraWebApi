@@ -12,7 +12,7 @@ import com.ganesh.mahindra.model.WhyWhyF18;
 @Repository
 public interface WhyWhyF18Repository extends JpaRepository<WhyWhyF18, Integer>{
 
-	List<WhyWhyF18> findByMachineIdAndDelStatus(int machineId, int i);
+	//List<WhyWhyF18> findByMachineIdAndDelStatus(int machineId, int i);
 
 	WhyWhyF18 findById(int id);
 
@@ -21,5 +21,8 @@ public interface WhyWhyF18Repository extends JpaRepository<WhyWhyF18, Integer>{
 
 	@Query(value="Select * from why_why_f18 where del_status=:delStatus and dept IN (:deptId)",nativeQuery=true)
 	List<WhyWhyF18> findByDeptInAndDelStatus(@Param("deptId")List<Integer> deptId,@Param("delStatus") int delStatus);
+
+	@Query(value="Select * from why_why_f18 where del_status=:delStatus and machine_id IN (:machineIdList)",nativeQuery=true)
+	List<WhyWhyF18> findByMachineIdInAndDelStatus(@Param("machineIdList")List<String> machineIdList,@Param("delStatus") int delStatus);
 
 }

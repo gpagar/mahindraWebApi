@@ -22,6 +22,9 @@ public class MachinDetails {
 	@Column(name = "machin_no",nullable=true)
 	String machinNo;
 	
+	@Column(name = "line ")
+	String line;
+	
 	@Column(name = "type")
 	int type;
 
@@ -40,6 +43,14 @@ public class MachinDetails {
 	String string1;
 	@Column(name = "string2")
 	String string2;
+	
+	
+	public String getLine() {
+		return line;
+	}
+	public void setLine(String line) {
+		this.line = line;
+	}
 	public int getMachinId() {
 		return machinId;
 	}

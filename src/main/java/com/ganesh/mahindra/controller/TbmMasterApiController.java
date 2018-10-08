@@ -59,6 +59,7 @@ public class TbmMasterApiController {
 	@ResponseBody
 	public TbmMachineItem insertTbmMachineitem(@RequestBody TbmMachineItem tbmMachineItem)
 	{
+		System.err.println(tbmMachineItem.toString()+"jjj");
 		TbmMachineItem tbmMachineItemRes=new TbmMachineItem();
 		try {
 		tbmMachineItemRes=tbmMachineItemRepository.save(tbmMachineItem); 
@@ -70,7 +71,7 @@ public class TbmMasterApiController {
 	
 	
 	
-	@RequestMapping(value = { "/getTbmMachine" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/getTbmMachine" }, method = RequestMethod.POST)
 	@ResponseBody
 	public List<TbmMachineDetails>  getTbmMachine(@RequestParam("deptId")int deptId) 
 	{
@@ -122,7 +123,7 @@ public class TbmMasterApiController {
 	
 	@RequestMapping(value = { "/getTbmMachineitem" }, method = RequestMethod.POST)
 	@ResponseBody
-	public List<TbmMachineItem> insertTbmMachineitem(@RequestParam("locationId")int locationId )
+	public List<TbmMachineItem> getTbmMachineitem(@RequestParam("locationId")int locationId )
 	{
 		 
 	 

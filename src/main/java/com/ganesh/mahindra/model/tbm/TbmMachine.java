@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-//@Table(name="tbm_machine")
+@Table(name="tbm_machine")
 public class TbmMachine implements Serializable{
 	
 	@Id
@@ -26,6 +26,18 @@ public class TbmMachine implements Serializable{
 	
 	@Column(name = "del_status")
 	private int delStatus;
+	
+	@Column(name = "int_1")
+	private int int1;
+
+	
+	public int getInt1() {
+		return int1;
+	}
+
+	public void setInt1(int int1) {
+		this.int1 = int1;
+	}
 
 	public int getMachineId() {
 		return machineId;

@@ -50,7 +50,7 @@ public class GetTbmHistory implements Serializable{
 	private int status;
 	
 	private int delStatus;
-
+	
 	public int gettTbmId() {
 		return tTbmId;
 	}

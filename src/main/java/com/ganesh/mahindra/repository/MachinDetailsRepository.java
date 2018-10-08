@@ -19,7 +19,7 @@ public interface MachinDetailsRepository extends JpaRepository<MachinDetails, In
 	
 	@Modifying
 	@Transactional
-	@Query("Delete from MachinDetails m   WHERE m.machinId=:machinId")
+	@Query("update  MachinDetails m set  m.delStatus=1 WHERE m.machinId=:machinId")
 	int deleteMachinId(@Param("machinId")int machinId );
 
 

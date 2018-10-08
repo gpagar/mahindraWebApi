@@ -22,7 +22,7 @@ public interface PMActivityDetailsRepository extends JpaRepository<PMActivityDet
 
 	@Modifying
 	@Transactional
-	@Query("Delete from PMActivityDetails m   WHERE m.activityId=:activityId")
+	@Query("update PMActivityDetails m set m.delStatus=1  WHERE m.activityId=:activityId")
 	int deleteMachinId(@Param("activityId")int activityId );
 
 	PMActivityDetails findByActivityId(int activityId);

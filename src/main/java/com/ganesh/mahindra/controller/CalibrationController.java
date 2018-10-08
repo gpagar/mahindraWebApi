@@ -55,6 +55,26 @@ public class CalibrationController {
 		
 		return eqCalDetailsList;
 	}
+	
+	@RequestMapping(value = { "/getAllEquipments" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<EqCalDetails> getAllEquipments(@RequestParam("deptId")int deptId) 
+	{
+		List<EqCalDetails> eqCalDetailsList=machineEqCalRepository.findByDelStatusAndDeptId(0,deptId);
+	    return eqCalDetailsList;
+	}
+	@RequestMapping(value = { "/getEquipment" }, method = RequestMethod.POST)
+	@ResponseBody
+	public EqCalDetails getEquipment(@RequestParam("id") int id) 
+	{
+		EqCalDetails eqCalDetails=null;
+		try {
+			eqCalDetails=machineEqCalRepository.findByIdAndDelStatus(id,0);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return eqCalDetails;
+	}
 	@RequestMapping(value = { "/insertCalibration" }, method = RequestMethod.POST)
 	@ResponseBody
 	public TCalibration insertCalibration(@RequestBody TCalibration calibration) 

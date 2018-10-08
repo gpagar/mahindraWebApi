@@ -406,12 +406,12 @@ public class PMaintanance {
 	}
 	@RequestMapping(value = { "/getPmMaintenancePlanList" }, method = RequestMethod.POST)
 	@ResponseBody
-	public List<PmPlan> getPmMaintenancePlanList(@RequestParam("month")int month) 
+	public List<PmPlan> getPmMaintenancePlanList(@RequestParam("month")int month,@RequestParam("deptId")int deptId) 
 	{
 		List<PmPlan> getPmMaintenancePlan = new ArrayList<PmPlan>();
 		try
 		{
-			getPmMaintenancePlan = pmPlanRepository.findByCurrentMonth(month);
+			getPmMaintenancePlan = pmPlanRepository.findByCurrentMonth(month,deptId);
 			
 		}catch(Exception e)
 		{
@@ -468,12 +468,12 @@ public class PMaintanance {
 	
 	@RequestMapping(value = { "/getAllWhyWhyF18" }, method = RequestMethod.POST)
 	@ResponseBody
-	public List<WhyWhyF18> getAllWhyWhyF18(@RequestParam("machineId")int machineId) 
+	public List<WhyWhyF18> getAllWhyWhyF18(@RequestParam("machineIdList")List<String> machineIdList) 
 	{
 		List<WhyWhyF18> whyWhyF18List=new ArrayList<WhyWhyF18>();
 		try {
 		
-			whyWhyF18List=whyWhyF18Repository.findByMachineIdAndDelStatus(machineId,0);
+			whyWhyF18List=whyWhyF18Repository.findByMachineIdInAndDelStatus(machineIdList,0);
 		
 		}
 		catch (Exception e) {
