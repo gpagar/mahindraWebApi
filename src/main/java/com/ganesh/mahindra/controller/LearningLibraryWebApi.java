@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ganesh.mahindra.mail.MailMail;
 import com.ganesh.mahindra.model.Info;
 import com.ganesh.mahindra.model.LearningLibrary;
 import com.ganesh.mahindra.model.cbm.CbmSchedule;
@@ -22,6 +23,24 @@ public class LearningLibraryWebApi {
 	
 	@Autowired
 	LearningLibraryRepository learningLibraryRepository;
+	 
+	@RequestMapping(value = { "/sendMail" }, method = RequestMethod.GET)
+	@ResponseBody
+	public LearningLibrary sendMail() 
+	{
+		
+		LearningLibrary save = new LearningLibrary();
+		
+		try {
+			String msg = "mail send through Boot ";
+			//MailMail.sendMsgThoughMail(msg);
+			MailMail.sendFileThoughMail();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		 
+	    return save;
+	}
 	
 	@RequestMapping(value = { "/saveFile" }, method = RequestMethod.POST)
 	@ResponseBody
