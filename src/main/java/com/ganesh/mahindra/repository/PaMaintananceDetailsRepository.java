@@ -10,7 +10,7 @@ public interface PaMaintananceDetailsRepository extends JpaRepository<PaMaintana
 	
 	PaMaintananceDetails save(PaMaintananceDetails paMaintananceDetails);
 
-	@Query(value="select * from pa_maintanance where machin_id=:machineId and check_point_id=:checkPointId and status<4",nativeQuery=true)
+	@Query(value="select * from pa_maintanance where machin_id=:machineId and del_status=0 and check_point_id=:checkPointId and status<4",nativeQuery=true)
 	PaMaintananceDetails getCheckRecordAgistMachine(@Param("checkPointId") int checkPointId,@Param("machineId") int machineId);
 
 }

@@ -22,4 +22,8 @@ public interface BreakdownTargetRepository extends JpaRepository<BreakdownTarget
 	@Query("UPDATE BreakdownTarget SET status=0  WHERE targetId=:targetId")
 	int deleteTarget(@Param("targetId")int targetId);
 
+	BreakdownTarget findByStatusAndGraphTypeAndExIntAndYear(int i, int graphType, int deptId, int year);
+
+	BreakdownTarget findByTargetId(int targetId);
+
 }

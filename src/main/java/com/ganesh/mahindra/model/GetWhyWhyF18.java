@@ -1,20 +1,14 @@
 package com.ganesh.mahindra.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 @Entity
-@Table(name = "why_why_f18")
-public class WhyWhyF18 implements Serializable {
+public class GetWhyWhyF18 implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,6 +24,9 @@ public class WhyWhyF18 implements Serializable {
 	@Column(name = "machine_no")
 	private String machineNo;
 
+	@Column(name = "machine_name")
+	private String machineName;
+	
 	@Column(name = "rank")
 	private int rank;
 	
@@ -130,85 +127,12 @@ public class WhyWhyF18 implements Serializable {
 
 	private String prevOccDate;
 
-	
-	public int getMachineType() {
-		return machineType;
+	public int getId() {
+		return id;
 	}
 
-	public void setMachineType(int machineType) {
-		this.machineType = machineType;
-	}
-
-	public int getRank() {
-		return rank;
-	}
-
-	public void setRank(int rank) {
-		this.rank = rank;
-	}
-
-	public String getRepairedBy() {
-		return repairedBy;
-	}
-
-	public void setRepairedBy(String repairedBy) {
-		this.repairedBy = repairedBy;
-	}
-
-	public String getRepairStartTime() {
-		return repairStartTime;
-	}
-
-	public void setRepairStartTime(String repairStartTime) {
-		this.repairStartTime = repairStartTime;
-	}
-
-	public String getRepairFinishTime() {
-		return repairFinishTime;
-	}
-
-	public void setRepairFinishTime(String repairFinishTime) {
-		this.repairFinishTime = repairFinishTime;
-	}
-
-	public String getIdea() {
-		return idea;
-	}
-
-	public void setIdea(String idea) {
-		this.idea = idea;
-	}
-
-	public String getPreparedBy() {
-		return preparedBy;
-	}
-
-	public void setPreparedBy(String preparedBy) {
-		this.preparedBy = preparedBy;
-	}
-
-	public String getMgrorhead() {
-		return mgrorhead;
-	}
-
-	public void setMgrorhead(String mgrorhead) {
-		this.mgrorhead = mgrorhead;
-	}
-
-	public String getSubcommMember() {
-		return subcommMember;
-	}
-
-	public void setSubcommMember(String subcommMember) {
-		this.subcommMember = subcommMember;
-	}
-
-	public String getPrevOccDate() {
-		return prevOccDate;
-	}
-
-	public void setPrevOccDate(String prevOccDate) {
-		this.prevOccDate = prevOccDate;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getMachineId() {
@@ -219,12 +143,12 @@ public class WhyWhyF18 implements Serializable {
 		this.machineId = machineId;
 	}
 
-	public int getId() {
-		return id;
+	public int getMachineType() {
+		return machineType;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setMachineType(int machineType) {
+		this.machineType = machineType;
 	}
 
 	public String getMachineNo() {
@@ -233,6 +157,22 @@ public class WhyWhyF18 implements Serializable {
 
 	public void setMachineNo(String machineNo) {
 		this.machineNo = machineNo;
+	}
+
+	public String getMachineName() {
+		return machineName;
+	}
+
+	public void setMachineName(String machineName) {
+		this.machineName = machineName;
+	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
 	}
 
 	public String getMonth() {
@@ -451,17 +391,86 @@ public class WhyWhyF18 implements Serializable {
 		this.delStatus = delStatus;
 	}
 
-	@Override
-	public String toString() {
-		return "WhyWhyF18 [id=" + id + ", machineNo=" + machineNo + ", month=" + month + ", date=" + date + ", dept="
-				+ dept + ", cellCircle=" + cellCircle + ", problemReported=" + problemReported + ", bdTimeLoss="
-				+ bdTimeLoss + ", engineLoss=" + engineLoss + ", partStatus=" + partStatus + ", partDesc=" + partDesc
-				+ ", bdMsPt=" + bdMsPt + ", action=" + action + ", why1=" + why1 + ", why2=" + why2 + ", why3=" + why3
-				+ ", why4=" + why4 + ", why5=" + why5 + ", rootCause=" + rootCause + ", clarificationOfCause="
-				+ clarificationOfCause + ", failureCode=" + failureCode + ", counterMeasure=" + counterMeasure
-				+ ", category=" + category + ", recurNonRecurr=" + recurNonRecurr + ", linkageWith=" + linkageWith
-				+ ", status=" + status + ", refNo=" + refNo + ", sapNotifNo=" + sapNotifNo + ", delStatus=" + delStatus
-				+ "]";
+	public String getRepairedBy() {
+		return repairedBy;
 	}
 
+	public void setRepairedBy(String repairedBy) {
+		this.repairedBy = repairedBy;
+	}
+
+	public String getRepairStartTime() {
+		return repairStartTime;
+	}
+
+	public void setRepairStartTime(String repairStartTime) {
+		this.repairStartTime = repairStartTime;
+	}
+
+	public String getRepairFinishTime() {
+		return repairFinishTime;
+	}
+
+	public void setRepairFinishTime(String repairFinishTime) {
+		this.repairFinishTime = repairFinishTime;
+	}
+
+	public String getIdea() {
+		return idea;
+	}
+
+	public void setIdea(String idea) {
+		this.idea = idea;
+	}
+
+	public String getPreparedBy() {
+		return preparedBy;
+	}
+
+	public void setPreparedBy(String preparedBy) {
+		this.preparedBy = preparedBy;
+	}
+
+	public String getMgrorhead() {
+		return mgrorhead;
+	}
+
+	public void setMgrorhead(String mgrorhead) {
+		this.mgrorhead = mgrorhead;
+	}
+
+	public String getSubcommMember() {
+		return subcommMember;
+	}
+
+	public void setSubcommMember(String subcommMember) {
+		this.subcommMember = subcommMember;
+	}
+
+	public String getPrevOccDate() {
+		return prevOccDate;
+	}
+
+	public void setPrevOccDate(String prevOccDate) {
+		this.prevOccDate = prevOccDate;
+	}
+
+	@Override
+	public String toString() {
+		return "GetWhyWhyF18 [id=" + id + ", machineId=" + machineId + ", machineType=" + machineType + ", machineNo="
+				+ machineNo + ", machineName=" + machineName + ", rank=" + rank + ", month=" + month + ", date=" + date
+				+ ", dept=" + dept + ", cellCircle=" + cellCircle + ", problemReported=" + problemReported
+				+ ", bdTimeLoss=" + bdTimeLoss + ", engineLoss=" + engineLoss + ", partStatus=" + partStatus
+				+ ", partDesc=" + partDesc + ", bdMsPt=" + bdMsPt + ", action=" + action + ", why1=" + why1 + ", why2="
+				+ why2 + ", why3=" + why3 + ", why4=" + why4 + ", why5=" + why5 + ", rootCause=" + rootCause
+				+ ", clarificationOfCause=" + clarificationOfCause + ", failureCode=" + failureCode
+				+ ", counterMeasure=" + counterMeasure + ", category=" + category + ", recurNonRecurr=" + recurNonRecurr
+				+ ", linkageWith=" + linkageWith + ", status=" + status + ", refNo=" + refNo + ", sapNotifNo="
+				+ sapNotifNo + ", delStatus=" + delStatus + ", repairedBy=" + repairedBy + ", repairStartTime="
+				+ repairStartTime + ", repairFinishTime=" + repairFinishTime + ", idea=" + idea + ", preparedBy="
+				+ preparedBy + ", mgrorhead=" + mgrorhead + ", subcommMember=" + subcommMember + ", prevOccDate="
+				+ prevOccDate + "]";
+	}
+
+	
 }

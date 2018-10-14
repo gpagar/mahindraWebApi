@@ -13,14 +13,14 @@ import com.ganesh.mahindra.model.BreakdownProblemsList;
 @Repository
 public interface BreakdownProblemsListRepository extends JpaRepository<BreakdownProblems, Integer>{
 
-	@Query(value="select id,machine_no,problem_reported  from why_why_f18 where dept=:deptId and date=:date2",nativeQuery=true)
+	@Query(value="select id,machine_no,problem_reported  from why_why_f18 where bd_ms_pt='MS' and dept=:deptId and date=:date2",nativeQuery=true)
 	List<BreakdownProblems> getDailyBreakdownMachineDetails(@Param("date2")String date2,@Param("deptId")int deptId);
 
 	
-	@Query(value="select id,machine_no,problem_reported  from why_why_f18 where dept=:deptId and date=:date2 and rank=1",nativeQuery=true)
+	@Query(value="select id,machine_no,problem_reported  from why_why_f18 where bd_ms_pt='BD' and dept=:deptId and date=:date2 and rank=1",nativeQuery=true)
 	List<BreakdownProblems> getDailyARankBreakdownMachineDetails(@Param("date2")String date2,@Param("deptId")int deptId);
 
-	@Query(value="select id,machine_no,problem_reported  from why_why_f18 where dept=:deptId and date=:date2 and rank!=1",nativeQuery=true)
+	@Query(value="select id,machine_no,problem_reported  from why_why_f18 where bd_ms_pt='BD' and dept=:deptId and date=:date2 and rank!=1",nativeQuery=true)
 	List<BreakdownProblems> getDailyAllBreakdownMachineDetails(@Param("date2")String date2,@Param("deptId")int deptId);
 
 }

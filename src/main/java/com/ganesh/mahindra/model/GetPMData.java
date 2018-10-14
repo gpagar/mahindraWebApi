@@ -37,7 +37,6 @@ public class GetPMData implements Serializable{
 	@Column(name = "check_point_name")
 	private String checkPointName;
 
-	@Transient
 	private int method;
 
 	public int getMethod() {
