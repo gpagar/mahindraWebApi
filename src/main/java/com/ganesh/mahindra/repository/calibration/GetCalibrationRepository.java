@@ -50,5 +50,9 @@ public interface GetCalibrationRepository extends JpaRepository<CalibrationDetai
 			"        t.del_status=0 \n" + 
 			"        and t.dept_id=:deptId",nativeQuery=true)
 	List<CalibrationDetails> findCalibrationData(@Param("deptId") int deptId);
+	
+	@Query(value="select   t.id, t.eq_name,t.sr_no,t.card_no,t.machine_no,t.line,t.frequency,coalesce((select t_mach_eq_calibration.calibration_done_date \n" + 
+			"  from  t_mach_eq_calibration    where   t_mach_eq_calibration.id = (select max(ct.id) from t_mach_eq_calibration ct where ct.dept_id=:deptId and ct.del_status=0 and ct.m_cal_id=t.id)), (select s.last_cal_date from m_mach_eq_cal s  where   s.id=t.id)) as last_cal_date, t.del_status, coalesce((select   (DATE_ADD(t_mach_eq_calibration.calibration_done_date,INTERVAL t.frequency DAY))   from t_mach_eq_calibration where  t_mach_eq_calibration.id = (select max(ct.id) from t_mach_eq_calibration ct where ct.dept_id=:deptId and ct.del_status=0 and ct.m_cal_id=t.id)), (select (DATE_ADD(t.last_cal_date,       INTERVAL t.frequency DAY)) from   m_mach_eq_cal s where  s.id=t.id)) as next_cal_date from m_mach_eq_cal t where t.del_status=0 and DATE_FORMAT( coalesce((select   (DATE_ADD(t_mach_eq_calibration.calibration_done_date,INTERVAL t.frequency DAY))   from t_mach_eq_calibration where  t_mach_eq_calibration.id = (select max(ct.id) from t_mach_eq_calibration ct where ct.dept_id=:deptId and ct.del_status=0 and ct.m_cal_id=t.id)), (select (DATE_ADD(t.last_cal_date,       INTERVAL t.frequency DAY)) from   m_mach_eq_cal s where  s.id=t.id)), '%Y-%m')=DATE_FORMAT(CURDATE(), '%Y-%m') and t.dept_id=:deptId",nativeQuery=true)
+	List<CalibrationDetails> findCalibrationDataForSchedule(@Param("deptId") int deptId);
 
 }

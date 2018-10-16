@@ -21,4 +21,6 @@ public interface CbmScheduleRepository extends JpaRepository<CbmSchedule, Intege
 	List<CbmSchedule> getCbmScheduleListForSpindleClimpingForce(@Param("deptId")int deptId);
 
 
+	@Query(value="select * from m_cbm_schedule where bbt_h2>0  and dept_id=:deptId",nativeQuery=true)
+	List<CbmSchedule> getCbmScheduleListForBallBarTest(@Param("deptId")int deptId);
 }
