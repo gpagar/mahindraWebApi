@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ganesh.mahindra.model.cbm.CbmSchedule;
+import com.ganesh.mahindra.model.cbm.CbmSpindleClampingForce;
 import com.ganesh.mahindra.model.cbm.CbmSpindleTemper;
 import com.ganesh.mahindra.repository.CbmScheduleRepository;
+import com.ganesh.mahindra.repository.CbmSpindleClampingForceRepository;
 import com.ganesh.mahindra.repository.CbmSpindleTemperRepository;
 
 @RestController
@@ -24,6 +26,9 @@ public class CbmSpindleTemperRestController {
 	
 	@Autowired
 	CbmScheduleRepository cbmScheduleRepository;
+	
+	@Autowired
+	CbmSpindleClampingForceRepository cbmSpindleClampingForceRepository;
 	
 	@RequestMapping(value = { "/saveCbmSpindleTemper" }, method = RequestMethod.POST)
 	@ResponseBody
@@ -69,6 +74,57 @@ public class CbmSpindleTemperRestController {
 		try {
 			
 			cbmScheduleList=cbmScheduleRepository.getCbmScheduleListForSpindleTemper(deptId);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	    return cbmScheduleList;
+	}
+	
+	
+	@RequestMapping(value = { "/saveCbmSpindleClimpingForce" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<CbmSpindleClampingForce> saveCbmSpindleClimpingForce(@RequestBody List<CbmSpindleClampingForce> cbmSpindleClampingForceList) 
+	{
+		List<CbmSpindleClampingForce> save = new ArrayList<CbmSpindleClampingForce>();
+		
+		try {
+			
+			 save= cbmSpindleClampingForceRepository.save(cbmSpindleClampingForceList);
+		    
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return save;
+	}
+	
+	@RequestMapping(value = { "/getCbmSpindleClimpingForce" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<CbmSpindleClampingForce> getCbmSpindleClimpingForce(@RequestParam("deptId") int deptId) 
+	{
+		List<CbmSpindleClampingForce> list = new ArrayList<CbmSpindleClampingForce>();
+		
+		try {
+			
+			list= cbmSpindleClampingForceRepository.findByStatusAndDeptId(0,deptId);
+		    
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	@RequestMapping(value = { "/getCbmScheduleListForSpindleClimpingForce" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<CbmSchedule> getCbmScheduleListForSpindleClimpingForce(@RequestParam("deptId")int deptId) 
+	{
+		List<CbmSchedule> cbmScheduleList = new ArrayList<>();
+		
+		try {
+			
+			cbmScheduleList=cbmScheduleRepository.getCbmScheduleListForSpindleClimpingForce(deptId);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
