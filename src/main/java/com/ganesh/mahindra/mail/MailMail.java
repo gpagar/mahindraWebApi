@@ -87,12 +87,12 @@ public class MailMail {
 		System.out.println("password" + password);
 
 		Properties props = new Properties();
-		props.put("mail.smtp.host", "smtp.gmail.com");
+		 props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.socketFactory.port", "465");
 		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.port", "587");
-
+		props.put("mail.smtp.port", "587"); 
+		 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(username, password);
@@ -106,7 +106,7 @@ public class MailMail {
 						
 			  Message mimeMessage = new MimeMessage(session); 
 			  mimeMessage.setFrom(new InternetAddress(username)); 
-			  mimeMessage.addRecipient(Message.RecipientType.TO,new InternetAddress(("PATIL.RESHMA@mahindra.com"))); 
+			  mimeMessage.addRecipient(Message.RecipientType.TO,new InternetAddress(("maheshgaidhani94@gmail.com"))); 
 			  mimeMessage.setSubject("MIS Sheet");  
 			  
 			  MimeBodyPart messagePart = new MimeBodyPart();
