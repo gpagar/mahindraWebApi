@@ -37,6 +37,16 @@ public class RestApiController {
 		return userDetails;
 	}
 	
+	@RequestMapping(value = { "/getUserById" }, method = RequestMethod.POST)
+	@ResponseBody
+	public UserDetails getUserById(@RequestParam("userId") int userId) {
+
+		UserDetails userDetails=new UserDetails();
+		userDetails=UserDetailsRepository.findByUserId(userId);
+		
+		return userDetails;
+	}
+	
 	//Insert New User
 	@RequestMapping(value = { "/insertNewUser" }, method = RequestMethod.POST)
 	@ResponseBody
@@ -55,6 +65,36 @@ public class RestApiController {
 			info.setError(true);
 			info.setMessage("Failed Insert");
 		}
+		return info;
+		
+		
+	}
+	
+	@RequestMapping(value = { "/deleteUser" }, method = RequestMethod.POST)
+	@ResponseBody
+	public Info deleteUser(@RequestParam("userId") int userId) {
+
+		Info info=new Info();
+		try {
+			
+			 
+			int delete=UserDetailsRepository.deleteUser(userId);
+			
+			
+			if(delete==1)
+			{
+				info.setError(false);
+				info.setMessage("Success");
+			}
+			else {
+				info.setError(true);
+				info.setMessage("Failed delete");
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		return info;
 		
 		

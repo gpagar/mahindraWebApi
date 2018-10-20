@@ -49,7 +49,7 @@ public class UserDetails {
 	@Column(name = "string2")
 	String string2;
 
-	@Column(name = "delStatus")
+	@Column(name = "del_status")
 	int delStatus;
 
 	public int getUserId() {
