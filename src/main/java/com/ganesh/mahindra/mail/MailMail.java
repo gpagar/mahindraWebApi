@@ -1,6 +1,7 @@
 package com.ganesh.mahindra.mail; 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -73,7 +74,7 @@ public class MailMail {
 	TbmDataRepository tbmDataRepository;
 	@Autowired
 	GetCalibrationRepository getCalibrationRepository;
-	//@Scheduled(cron = "0 0/30 * * * ?") 
+	@Scheduled(cron = "0 0/30 * * * ?") 
 	public void sendFileThoughMail() {
 		
 		final String emailSMTPserver = "smtp.gmail.com";
@@ -201,7 +202,7 @@ public class MailMail {
 		}
 */
 	}
-	//@Scheduled(cron = "0 0/30 * * * ?") 
+	@Scheduled(cron = "0 0/30 * * * ?") 
       public  void sendMsgThoughMail() {
 		
 		final String emailSMTPserver = "smtp.gmail.com";
@@ -405,6 +406,10 @@ public class MailMail {
 		
 	}
 
+  	public static float roundUp(float d) {
+  		return BigDecimal.valueOf(d).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
+  	}
+
 	public  void writePdf(OutputStream outputStream,int deptId) throws Exception {
 	
 		Document document = new Document(PageSize.A3);
@@ -594,104 +599,104 @@ public class MailMail {
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
-			cell = new PdfPCell(new Phrase(Math.round(elTarget.getTargetL5()/12)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp(elTarget.getTargetL5()/12)+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(Math.round(elTarget.getTargetL3()/12)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp(elTarget.getTargetL3()/12)+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+engineLoss.getBreakdownTime1()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(engineLoss.getBreakdownTime1())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+engineLoss.getBreakdownTime2()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(engineLoss.getBreakdownTime2())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+engineLoss.getBreakdownTime3()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(engineLoss.getBreakdownTime3())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+engineLoss.getBreakdownTime4()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(engineLoss.getBreakdownTime4())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+engineLoss.getBreakdownTime5()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(engineLoss.getBreakdownTime5())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+engineLoss.getBreakdownTime6()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(engineLoss.getBreakdownTime6())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+engineLoss.getBreakdownTime7()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(engineLoss.getBreakdownTime7())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+engineLoss.getBreakdownTime8()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(engineLoss.getBreakdownTime8())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+engineLoss.getBreakdownTime9()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(engineLoss.getBreakdownTime9())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+engineLoss.getBreakdownTime10()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(engineLoss.getBreakdownTime10())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+engineLoss.getBreakdownTime11()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(engineLoss.getBreakdownTime11())), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+engineLoss.getBreakdownTime12()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(engineLoss.getBreakdownTime12())), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
-			float eLossTotal=engineLoss.getBreakdownTime1()+engineLoss.getBreakdownTime2()+engineLoss.getBreakdownTime3()+engineLoss.getBreakdownTime4()+engineLoss.getBreakdownTime5()+engineLoss.getBreakdownTime6()+engineLoss.getBreakdownTime7()+engineLoss.getBreakdownTime8()+engineLoss.getBreakdownTime9()+engineLoss.getBreakdownTime10()+engineLoss.getBreakdownTime11()+engineLoss.getBreakdownTime12();
-			cell = new PdfPCell(new Phrase(Math.round(eLossTotal)+"", headFont));
+			float eLossTotal=(engineLoss.getBreakdownTime1()+engineLoss.getBreakdownTime2()+engineLoss.getBreakdownTime3()+engineLoss.getBreakdownTime4()+engineLoss.getBreakdownTime5()+engineLoss.getBreakdownTime6()+engineLoss.getBreakdownTime7()+engineLoss.getBreakdownTime8()+engineLoss.getBreakdownTime9()+engineLoss.getBreakdownTime10()+engineLoss.getBreakdownTime11()+engineLoss.getBreakdownTime12())/monthNo;
+			cell = new PdfPCell(new Phrase(roundUp(eLossTotal)+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
@@ -712,21 +717,21 @@ public class MailMail {
 			table.addCell(cell);
 			
 
-			cell = new PdfPCell(new Phrase(Math.round(allTarget.getTargetL5()/12)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp(allTarget.getTargetL5()/12)+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(Math.round(allTarget.getTargetL3()/12)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp(allTarget.getTargetL3()/12)+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+allBreak.getBreakdownCnt1()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(allBreak.getBreakdownCnt1())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
@@ -734,84 +739,84 @@ public class MailMail {
 			
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+allBreak.getBreakdownCnt2()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(allBreak.getBreakdownCnt2())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+allBreak.getBreakdownCnt3()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(allBreak.getBreakdownCnt3())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+allBreak.getBreakdownCnt4()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(allBreak.getBreakdownCnt4())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+allBreak.getBreakdownCnt5()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(allBreak.getBreakdownCnt5())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+allBreak.getBreakdownCnt6()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(allBreak.getBreakdownCnt6())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+allBreak.getBreakdownCnt7()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(allBreak.getBreakdownCnt7())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+allBreak.getBreakdownCnt8()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(allBreak.getBreakdownCnt8())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+allBreak.getBreakdownCnt9()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(allBreak.getBreakdownCnt9())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+allBreak.getBreakdownCnt10()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(allBreak.getBreakdownCnt10())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+allBreak.getBreakdownCnt11()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(allBreak.getBreakdownCnt11())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+allBreak.getBreakdownCnt12()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(allBreak.getBreakdownCnt12())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			float allBreakTotal=allBreak.getBreakdownCnt1()+allBreak.getBreakdownCnt2()+allBreak.getBreakdownCnt3()+allBreak.getBreakdownCnt4()+allBreak.getBreakdownCnt5()+allBreak.getBreakdownCnt6()+allBreak.getBreakdownCnt7()+allBreak.getBreakdownCnt8()+allBreak.getBreakdownCnt9()+allBreak.getBreakdownCnt10()+allBreak.getBreakdownCnt11()+allBreak.getBreakdownCnt12();
 
-			cell = new PdfPCell(new Phrase(Math.round(allBreakTotal/monthNo)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp(allBreakTotal/monthNo)+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
@@ -833,105 +838,105 @@ public class MailMail {
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(Math.round(timeTarget.getTargetL5()/12)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp(timeTarget.getTargetL5()/12)+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(Math.round(timeTarget.getTargetL3()/12)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp(timeTarget.getTargetL3()/12)+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase((mtbf.getBreakdownTime1()/60)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime1()/60))+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase((mtbf.getBreakdownTime2()/60)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime2()/60))+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase((mtbf.getBreakdownTime3()/60)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime3()/60))+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase((mtbf.getBreakdownTime4()/60)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime4()/60))+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase((mtbf.getBreakdownTime5()/60)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime5()/60))+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase((mtbf.getBreakdownTime6()/60)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime6()/60))+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase((mtbf.getBreakdownTime7()/60)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime7()/60))+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase((mtbf.getBreakdownTime8()/60)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime8()/60))+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase((mtbf.getBreakdownTime9()/60)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime9()/60))+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase((mtbf.getBreakdownTime10()/60)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime10()/60))+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase((mtbf.getBreakdownTime11()/60)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime11()/60))+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase((mtbf.getBreakdownTime12()/60)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime12()/60))+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			float mtbfTotal=(mtbf.getBreakdownTime1()/60)+(mtbf.getBreakdownTime2()/60)+(mtbf.getBreakdownTime3()/60)+(mtbf.getBreakdownTime4()/60)+(mtbf.getBreakdownTime5()/60)+(mtbf.getBreakdownTime6()/60)+(mtbf.getBreakdownTime7()/60)+(mtbf.getBreakdownTime8()/60)+(mtbf.getBreakdownTime9()/60)+(mtbf.getBreakdownTime10()/60)+(mtbf.getBreakdownTime11()/60)+(mtbf.getBreakdownTime12()/60);
 
-			cell = new PdfPCell(new Phrase(Math.round(mtbfTotal/monthNo)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp(mtbfTotal/monthNo)+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
@@ -965,90 +970,90 @@ public class MailMail {
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf("0"), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf("0"), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf("0"), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf("0"), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf("0"), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf("0"), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf("0"), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf("0"), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf("0"), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf("0"), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf("0"), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf("0"), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf("0"), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
@@ -1067,105 +1072,105 @@ public class MailMail {
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase((minorTarget.getTargetL5()/12)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp((minorTarget.getTargetL5()/12))+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase((minorTarget.getTargetL3()/12)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp((minorTarget.getTargetL3()/12))+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+minorStoppages.getBreakdownCnt1()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(minorStoppages.getBreakdownCnt1())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+minorStoppages.getBreakdownCnt2()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(minorStoppages.getBreakdownCnt2())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+minorStoppages.getBreakdownCnt3()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(minorStoppages.getBreakdownCnt3())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+minorStoppages.getBreakdownCnt4()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(minorStoppages.getBreakdownCnt4())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+minorStoppages.getBreakdownCnt5()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(minorStoppages.getBreakdownCnt5())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+minorStoppages.getBreakdownCnt6()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(minorStoppages.getBreakdownCnt6())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+minorStoppages.getBreakdownCnt7()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(minorStoppages.getBreakdownCnt7())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+minorStoppages.getBreakdownCnt8()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(minorStoppages.getBreakdownCnt8())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+minorStoppages.getBreakdownCnt9()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(minorStoppages.getBreakdownCnt9())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+minorStoppages.getBreakdownCnt10()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(minorStoppages.getBreakdownCnt10())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+minorStoppages.getBreakdownCnt11()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(minorStoppages.getBreakdownCnt11())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(String.valueOf(""+minorStoppages.getBreakdownCnt12()), headFont));
+			cell = new PdfPCell(new Phrase(String.valueOf(roundUp(minorStoppages.getBreakdownCnt12())+""), headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			float minorStoppageTotal=(minorStoppages.getBreakdownCnt1()+minorStoppages.getBreakdownCnt2()+minorStoppages.getBreakdownCnt3()+minorStoppages.getBreakdownCnt4()+minorStoppages.getBreakdownCnt5()+minorStoppages.getBreakdownCnt6()+minorStoppages.getBreakdownCnt7()+minorStoppages.getBreakdownCnt8()+minorStoppages.getBreakdownCnt9()+minorStoppages.getBreakdownCnt10()+minorStoppages.getBreakdownCnt11()+minorStoppages.getBreakdownCnt12());
-			cell = new PdfPCell(new Phrase(Math.round(minorStoppageTotal/monthNo)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp(minorStoppageTotal/monthNo)+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
@@ -1185,21 +1190,21 @@ public class MailMail {
 			table.addCell(cell);
 			
 
-			cell = new PdfPCell(new Phrase(Math.round(mtbfTarget.getTargetL5()/12)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp(mtbfTarget.getTargetL5()/12)+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(Math.round(mtbfTarget.getTargetL3()/12)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp(mtbfTarget.getTargetL3()/12)+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			float mtbfTotals=0;
 			if(mtbf.getBreakdownCnt1()>0) {
-			cell = new PdfPCell(new Phrase((720/mtbf.getBreakdownCnt1())+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp((720/mtbf.getBreakdownCnt1()))+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
@@ -1215,7 +1220,7 @@ public class MailMail {
 			}
 			
 			if(mtbf.getBreakdownCnt2()>0) {
-				cell = new PdfPCell(new Phrase((744/mtbf.getBreakdownCnt2())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp((744/mtbf.getBreakdownCnt2()))+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1232,7 +1237,7 @@ public class MailMail {
 			
 			
 			if(mtbf.getBreakdownCnt3()>0) {
-				cell = new PdfPCell(new Phrase((720/mtbf.getBreakdownCnt3())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp(720/mtbf.getBreakdownCnt3())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1248,7 +1253,7 @@ public class MailMail {
 				}
 			
 			if(mtbf.getBreakdownCnt4()>0) {
-				cell = new PdfPCell(new Phrase((744/mtbf.getBreakdownCnt4())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp(744/mtbf.getBreakdownCnt4())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1266,7 +1271,7 @@ public class MailMail {
 			
 			
 			if(mtbf.getBreakdownCnt5()>0) {
-				cell = new PdfPCell(new Phrase((744/mtbf.getBreakdownCnt5())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp(744/mtbf.getBreakdownCnt5())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1282,7 +1287,7 @@ public class MailMail {
 				}
 			
 			if(mtbf.getBreakdownCnt6()>0) {
-				cell = new PdfPCell(new Phrase((720/mtbf.getBreakdownCnt6())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp(720/mtbf.getBreakdownCnt6())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1299,7 +1304,7 @@ public class MailMail {
 			
 			
 			if(mtbf.getBreakdownCnt7()>0) {
-				cell = new PdfPCell(new Phrase((744/mtbf.getBreakdownCnt7())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp(744/mtbf.getBreakdownCnt7())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1316,7 +1321,7 @@ public class MailMail {
 			
 			
 			if(mtbf.getBreakdownCnt8()>0) {
-				cell = new PdfPCell(new Phrase((720/mtbf.getBreakdownCnt8())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp(720/mtbf.getBreakdownCnt8())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1334,7 +1339,7 @@ public class MailMail {
 			
 
 			if(mtbf.getBreakdownCnt9()>0) {
-				cell = new PdfPCell(new Phrase((744/mtbf.getBreakdownCnt9())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp(744/mtbf.getBreakdownCnt9())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1350,7 +1355,7 @@ public class MailMail {
 				}
 			
 			if(mtbf.getBreakdownCnt10()>0) {
-				cell = new PdfPCell(new Phrase((744/mtbf.getBreakdownCnt10())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp(744/mtbf.getBreakdownCnt10())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1366,7 +1371,7 @@ public class MailMail {
 				}
 			
 			if(mtbf.getBreakdownCnt11()>0) {
-				cell = new PdfPCell(new Phrase((720/mtbf.getBreakdownCnt11())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp(720/mtbf.getBreakdownCnt11())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1383,7 +1388,7 @@ public class MailMail {
 			
 			
 			if(mtbf.getBreakdownCnt12()>0) {
-				cell = new PdfPCell(new Phrase((744/mtbf.getBreakdownCnt12())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp(744/mtbf.getBreakdownCnt12())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1399,7 +1404,7 @@ public class MailMail {
 				}
 			
 			
-			cell = new PdfPCell(new Phrase(Math.round(mtbfTotals)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp(mtbfTotals/monthNo)+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
@@ -1419,14 +1424,14 @@ public class MailMail {
 			table.addCell(cell);
 			
 
-			cell = new PdfPCell(new Phrase(Math.round(mttrTarget.getTargetL5()/12)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp(mttrTarget.getTargetL5()/12)+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
 			table.addCell(cell);
 			
 			
-			cell = new PdfPCell(new Phrase(Math.round(mttrTarget.getTargetL3()/12)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp(mttrTarget.getTargetL3()/12)+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
@@ -1434,7 +1439,7 @@ public class MailMail {
 			
 			float mttrTotal=0.0f;
 			if(mtbf.getBreakdownCnt1()>0) {
-				cell = new PdfPCell(new Phrase(((mtbf.getBreakdownTime1()/60)/mtbf.getBreakdownCnt1())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime1()/60)/mtbf.getBreakdownCnt1())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1449,7 +1454,7 @@ public class MailMail {
 					table.addCell(cell);	
 				}
 			if(mtbf.getBreakdownCnt2()>0) {
-				cell = new PdfPCell(new Phrase(((mtbf.getBreakdownTime2()/60)/mtbf.getBreakdownCnt2())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime2()/60)/mtbf.getBreakdownCnt2())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1465,7 +1470,7 @@ public class MailMail {
 				}
 			
 			if(mtbf.getBreakdownCnt3()>0) {
-				cell = new PdfPCell(new Phrase(((mtbf.getBreakdownTime3()/60)/mtbf.getBreakdownCnt3())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime3()/60)/mtbf.getBreakdownCnt3())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1481,7 +1486,7 @@ public class MailMail {
 				}
 			
 			if(mtbf.getBreakdownCnt4()>0) {
-				cell = new PdfPCell(new Phrase(((mtbf.getBreakdownTime4()/60)/mtbf.getBreakdownCnt4())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime4()/60)/mtbf.getBreakdownCnt4())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1497,7 +1502,7 @@ public class MailMail {
 				}
 			
 			if(mtbf.getBreakdownCnt5()>0) {
-				cell = new PdfPCell(new Phrase(((mtbf.getBreakdownTime5()/60)/mtbf.getBreakdownCnt5())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime5()/60)/mtbf.getBreakdownCnt5())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1513,7 +1518,7 @@ public class MailMail {
 				}
 			
 			if(mtbf.getBreakdownCnt6()>0) {
-				cell = new PdfPCell(new Phrase(((mtbf.getBreakdownTime6()/60)/mtbf.getBreakdownCnt6())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime6()/60)/mtbf.getBreakdownCnt6())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1529,7 +1534,7 @@ public class MailMail {
 				}
 			
 			if(mtbf.getBreakdownCnt7()>0) {
-				cell = new PdfPCell(new Phrase(((mtbf.getBreakdownTime7()/60)/mtbf.getBreakdownCnt7())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime7()/60)/mtbf.getBreakdownCnt7())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1545,7 +1550,7 @@ public class MailMail {
 				}
 			
 			if(mtbf.getBreakdownCnt8()>0) {
-				cell = new PdfPCell(new Phrase(((mtbf.getBreakdownTime8()/60)/mtbf.getBreakdownCnt8())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime8()/60)/mtbf.getBreakdownCnt8())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1562,7 +1567,7 @@ public class MailMail {
 			
 			
 			if(mtbf.getBreakdownCnt9()>0) {
-				cell = new PdfPCell(new Phrase(((mtbf.getBreakdownTime9()/60)/mtbf.getBreakdownCnt9())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime9()/60)/mtbf.getBreakdownCnt9())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1579,7 +1584,7 @@ public class MailMail {
 			
 			
 			if(mtbf.getBreakdownCnt10()>0) {
-				cell = new PdfPCell(new Phrase(((mtbf.getBreakdownTime10()/60)/mtbf.getBreakdownCnt10())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime10()/60)/mtbf.getBreakdownCnt10())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1595,7 +1600,7 @@ public class MailMail {
 				}
 			
 			if(mtbf.getBreakdownCnt11()>0) {
-				cell = new PdfPCell(new Phrase(((mtbf.getBreakdownTime11()/60)/mtbf.getBreakdownCnt11())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime11()/60)/mtbf.getBreakdownCnt11())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1612,7 +1617,7 @@ public class MailMail {
 			
 			
 			if(mtbf.getBreakdownCnt12()>0) {
-				cell = new PdfPCell(new Phrase(((mtbf.getBreakdownTime12()/60)/mtbf.getBreakdownCnt12())+"", headFont));
+				cell = new PdfPCell(new Phrase(roundUp((mtbf.getBreakdownTime12()/60)/mtbf.getBreakdownCnt12())+"", headFont));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				cell.setPaddingRight(8);
@@ -1627,7 +1632,7 @@ public class MailMail {
 					table.addCell(cell);	
 				}
 			
-			cell = new PdfPCell(new Phrase(Math.round(mttrTotal/monthNo)+"", headFont));
+			cell = new PdfPCell(new Phrase(roundUp(mttrTotal/monthNo)+"", headFont));
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setPaddingRight(8);
