@@ -202,7 +202,7 @@ public class MailMail {
 		}
 */
 	}
-	@Scheduled(cron = "0 0/30 * * * ?") 
+	//@Scheduled(cron = "0 0/30 * * * ?") 
       public  void sendMsgThoughMail() {
 		
 		final String emailSMTPserver = "smtp.gmail.com";
