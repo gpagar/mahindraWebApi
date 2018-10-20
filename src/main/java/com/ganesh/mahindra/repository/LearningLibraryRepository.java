@@ -19,4 +19,6 @@ public interface LearningLibraryRepository extends JpaRepository<LearningLibrary
 
 	List<LearningLibrary> findByDelStatus(int i);
 
+	List<LearningLibrary> findByDelStatusAndVarchar1AndVarchar2(int i, String valueOf, String valueOf2);
+
 }
