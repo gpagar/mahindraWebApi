@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ganesh.mahindra.model.cbm.CbmEarthingResistance;
 import com.ganesh.mahindra.model.cbm.CbmSchedule;
 import com.ganesh.mahindra.model.cbm.CbmSpindleClampingForce;
 import com.ganesh.mahindra.model.cbm.CbmSpindleTemper;
+import com.ganesh.mahindra.repository.CbmEarthingResistanceRepository;
 import com.ganesh.mahindra.repository.CbmScheduleRepository;
 import com.ganesh.mahindra.repository.CbmSpindleClampingForceRepository;
 import com.ganesh.mahindra.repository.CbmSpindleTemperRepository;
@@ -29,6 +31,9 @@ public class CbmSpindleTemperRestController {
 	
 	@Autowired
 	CbmSpindleClampingForceRepository cbmSpindleClampingForceRepository;
+	
+	@Autowired
+	CbmEarthingResistanceRepository cbmEarthingResistanceRepository;
 	
 	@RequestMapping(value = { "/saveCbmSpindleTemper" }, method = RequestMethod.POST)
 	@ResponseBody
@@ -125,6 +130,56 @@ public class CbmSpindleTemperRestController {
 		try {
 			
 			cbmScheduleList=cbmScheduleRepository.getCbmScheduleListForSpindleClimpingForce(deptId);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	    return cbmScheduleList;
+	}
+	
+	@RequestMapping(value = { "/saveCbmEarthingResistance" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<CbmEarthingResistance> saveCbmEarthingResistance(@RequestBody List<CbmEarthingResistance> cbmEarthingResistanceList) 
+	{
+		List<CbmEarthingResistance> save = new ArrayList<CbmEarthingResistance>();
+		
+		try {
+			
+			 save= cbmEarthingResistanceRepository.save(cbmEarthingResistanceList);
+		    
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return save;
+	}
+	
+	@RequestMapping(value = { "/getCbmEarthingResistance" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<CbmEarthingResistance> getCbmEarthingResistance(@RequestParam("deptId") int deptId) 
+	{
+		List<CbmEarthingResistance> list = new ArrayList<CbmEarthingResistance>();
+		
+		try {
+			
+			list= cbmEarthingResistanceRepository.findByStatusAndDeptId(0,deptId);
+		    
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	@RequestMapping(value = { "/getCbmScheduleListForEarthingResistance" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<CbmSchedule> getCbmScheduleListForEarthingResistance(@RequestParam("deptId")int deptId) 
+	{
+		List<CbmSchedule> cbmScheduleList = new ArrayList<>();
+		
+		try {
+			
+			cbmScheduleList=cbmScheduleRepository.getCbmScheduleListForEarthingResistance(deptId);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
