@@ -1,6 +1,9 @@
 package com.ganesh.mahindra.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +41,10 @@ import com.ganesh.mahindra.model.PMActivityDetails;
 import com.ganesh.mahindra.model.PMCheckPoints;
 import com.ganesh.mahindra.model.PMItemDetails;
 import com.ganesh.mahindra.model.PaMaintananceDetails;
+import com.ganesh.mahindra.model.PmActualGData;
 import com.ganesh.mahindra.model.PmPlan;
 import com.ganesh.mahindra.model.PmRequiredValue;
+import com.ganesh.mahindra.model.PmTargetGData;
 import com.ganesh.mahindra.model.TSetting;
 import com.ganesh.mahindra.model.UserDetails;
 import com.ganesh.mahindra.model.WhyWhyF18;
@@ -68,8 +73,10 @@ import com.ganesh.mahindra.repository.PMActivityDetailsRepository;
 import com.ganesh.mahindra.repository.PMCheckPointsRepository;
 import com.ganesh.mahindra.repository.PMItemDetailsRepository;
 import com.ganesh.mahindra.repository.PaMaintananceDetailsRepository;
+import com.ganesh.mahindra.repository.PmActualPlanGDataRepository;
 import com.ganesh.mahindra.repository.PmPlanRepository;
 import com.ganesh.mahindra.repository.PmRequiredValueRepository;
+import com.ganesh.mahindra.repository.PmTargetPlanGDataRepository;
 import com.ganesh.mahindra.repository.TSettingRepository;
 import com.ganesh.mahindra.repository.WhyWhyF18Repository;
 
@@ -156,6 +163,12 @@ public class PMaintanance {
 	
 	@Autowired
 	GetBreakdownDataRepository getBreakdownDataRepository;
+	
+	@Autowired
+	PmActualPlanGDataRepository pmActualPlanGDataRepository;
+	
+	@Autowired
+	PmTargetPlanGDataRepository pmTargetPlanGDataRepository;
 	
 	@RequestMapping(value = { "/getMachineById" }, method = RequestMethod.POST)
 	@ResponseBody
@@ -517,33 +530,33 @@ public class PMaintanance {
 	
 	@RequestMapping(value = { "/getBreakdownData" }, method = RequestMethod.POST)
 	@ResponseBody
-	public List<GetWhyWhyF18> getBreakdownData(@RequestParam("machineIdList")List<String> machineIdList,@RequestParam("bdMsPt")String bdMsPt,@RequestParam("month")String month) 
+	public List<GetWhyWhyF18> getBreakdownData(@RequestParam("machineIdList")List<String> machineIdList,@RequestParam("bdMsPt")String bdMsPt,@RequestParam("month")String month,@RequestParam("deptId")int deptId) 
 	{
 		List<GetWhyWhyF18> whyWhyF18List=new ArrayList<GetWhyWhyF18>();
 		try {
 		    if(machineIdList.size()>0 && bdMsPt.equals("0") && month.equals("0"))
 		    {
-			whyWhyF18List=getBreakdownDataRepository.findByMachineIdInAndDelStatus(machineIdList,0);
+			whyWhyF18List=getBreakdownDataRepository.findByMachineIdInAndDelStatus(machineIdList,0,deptId);
 		    }
 		    else if(machineIdList.size()==0 && !bdMsPt.equals("0") && month.equals("0"))
 		    {
-		    	whyWhyF18List=getBreakdownDataRepository.findByBdMsPTAndDelStatus(bdMsPt,0);
+		    	whyWhyF18List=getBreakdownDataRepository.findByBdMsPTAndDelStatus(bdMsPt,0,deptId);
 		    }
 		    else if(machineIdList.size()==0 && bdMsPt.equals("0") && !month.equals("0"))
 		    {
-		    	whyWhyF18List=getBreakdownDataRepository.findByMonthAndDelStatus(month,0);
+		    	whyWhyF18List=getBreakdownDataRepository.findByMonthAndDelStatus(month,0,deptId);
 		    }  else if(machineIdList.size()>0 && !bdMsPt.equals("0") && month.equals("0"))
 		    {
-		    	whyWhyF18List=getBreakdownDataRepository.findByMachineIdInAndBdMsPTAndDelStatus(machineIdList,bdMsPt,0);
+		    	whyWhyF18List=getBreakdownDataRepository.findByMachineIdInAndBdMsPTAndDelStatus(machineIdList,bdMsPt,0,deptId);
 		    } else if(machineIdList.size()==0 && !bdMsPt.equals("0") && !month.equals("0"))
 		    {
-		    	whyWhyF18List=getBreakdownDataRepository.findByBdMsPTAndMonthAndDelStatus(bdMsPt,month,0);
+		    	whyWhyF18List=getBreakdownDataRepository.findByBdMsPTAndMonthAndDelStatus(bdMsPt,month,0,deptId);
 		    } else if(machineIdList.size()>0 && bdMsPt.equals("0") && !month.equals("0"))
 		    {
-		    	whyWhyF18List=getBreakdownDataRepository.findByMachineIdInAndMonthDelStatus(machineIdList,month,0);
+		    	whyWhyF18List=getBreakdownDataRepository.findByMachineIdInAndMonthDelStatus(machineIdList,month,0,deptId);
 		    } else if(machineIdList.size()>0 && !bdMsPt.equals("0") && !month.equals("0"))
 		    {
-		    	whyWhyF18List=getBreakdownDataRepository.findByMachineIdInAndBdMsPtAndMonthDelStatus(machineIdList,bdMsPt,month,0);
+		    	whyWhyF18List=getBreakdownDataRepository.findByMachineIdInAndBdMsPtAndMonthDelStatus(machineIdList,bdMsPt,month,0,deptId);
 		    }
 		
 		}
@@ -1255,7 +1268,7 @@ public class PMaintanance {
 			int fromFirst=year-4;
 			String fromFirstYear=fromFirst+"-04-01";
 			System.out.println( year+""+month+""+fromFirstYear+""+ toFirstYear+""+fromSecondYear+""+toSecondYear+""+fromThirdYear+""+toThirdYear+""+fromFourthYear+""+toFourthYear);
-			breakdownYearlyRes=breakdownYearlyRepository.getYearwiseBreakdowns(""+fromSecond,""+fromThird,""+fromFourth,(year+1)+"",fromFirstYear, toFirstYear,fromSecondYear,toSecondYear,fromThirdYear,toThirdYear,fromFourthYear,toFourthYear,deptId);
+			breakdownYearlyRes=breakdownYearlyRepository.getYearwiseBreakdowns(""+fromSecond,""+fromThird,""+fromFourth,(year)+"",fromFirstYear, toFirstYear,fromSecondYear,toSecondYear,fromThirdYear,toThirdYear,fromFourthYear,toFourthYear,deptId);
 			machineL5TargetRes=machineL5TargetRepository.getYearlyAssignedL5Target(graphType,fromSecond,fromThird,fromFourth,year,deptId);
 			machineL3TargetRes=machineL3TargetRepository.getYearlyAssignedL3Target(graphType,fromSecond,fromThird,fromFourth,year,deptId);
 			dailyBreakdownsRes=dailyBreakdownRepository.getDailyBreakdowns(
@@ -1267,6 +1280,7 @@ public class PMaintanance {
 					year+"-"+month+"-21",year+"-"+month+"-22",year+"-"+month+"-23",year+"-"+month+"-24",
 					year+"-"+month+"-25",year+"-"+month+"-26",year+"-"+month+"-27",year+"-"+month+"-28",
 					year+"-"+month+"-29",year+"-"+month+"-30",deptId);
+			
 			for(int i=01;i<=30;i++)
 			{
 				List<BreakdownProblems>	breakPList=breakdownProblemsListRepository.getDailyBreakdownMachineDetails(year+"-"+month+"-"+i,deptId);
@@ -1469,7 +1483,7 @@ public class PMaintanance {
 			int fromFirst=year-4;
 			String fromFirstYear=fromFirst+"-04-01";
 			System.out.println( year+""+month+""+fromFirstYear+""+ toFirstYear+""+fromSecondYear+""+toSecondYear+""+fromThirdYear+""+toThirdYear+""+fromFourthYear+""+toFourthYear);
-			breakdownYearlyRes=breakdownYearlyRepository.getARankYearwiseBreakdowns(""+fromSecond,""+fromThird,""+fromFourth,(year+1)+"",fromFirstYear, toFirstYear,fromSecondYear,toSecondYear,fromThirdYear,toThirdYear,fromFourthYear,toFourthYear,deptId);
+			breakdownYearlyRes=breakdownYearlyRepository.getARankYearwiseBreakdowns(""+fromSecond,""+fromThird,""+fromFourth,(year)+"",fromFirstYear, toFirstYear,fromSecondYear,toSecondYear,fromThirdYear,toThirdYear,fromFourthYear,toFourthYear,deptId);
 			machineL5TargetRes=machineL5TargetRepository.getYearlyAssignedL5Target(graphType,fromSecond,fromThird,fromFourth,year,deptId);
 			machineL3TargetRes=machineL3TargetRepository.getYearlyAssignedL3Target(graphType,fromSecond,fromThird,fromFourth,year,deptId);
 			dailyBreakdownsRes=dailyBreakdownRepository.getARankDailyBreakdowns(
@@ -1683,7 +1697,7 @@ public class PMaintanance {
 			int fromFirst=year-4;
 			String fromFirstYear=fromFirst+"-04-01";
 			System.out.println( year+""+month+""+fromFirstYear+""+ toFirstYear+""+fromSecondYear+""+toSecondYear+""+fromThirdYear+""+toThirdYear+""+fromFourthYear+""+toFourthYear);
-			breakdownYearlyRes=breakdownYearlyRepository.getAllBrekYearwiseBreakdowns(""+fromSecond,""+fromThird,""+fromFourth,(year+1)+"",fromFirstYear, toFirstYear,fromSecondYear,toSecondYear,fromThirdYear,toThirdYear,fromFourthYear,toFourthYear,deptId);
+			breakdownYearlyRes=breakdownYearlyRepository.getAllBrekYearwiseBreakdowns(""+fromSecond,""+fromThird,""+fromFourth,(year)+"",fromFirstYear, toFirstYear,fromSecondYear,toSecondYear,fromThirdYear,toThirdYear,fromFourthYear,toFourthYear,deptId);
 			machineL5TargetRes=machineL5TargetRepository.getYearlyAssignedL5Target(graphType,fromSecond,fromThird,fromFourth,year,deptId);
 			machineL3TargetRes=machineL3TargetRepository.getYearlyAssignedL3Target(graphType,fromSecond,fromThird,fromFourth,year,deptId);
 			dailyBreakdownsRes=dailyBreakdownRepository.getAllBrekDailyBreakdowns(
@@ -1898,7 +1912,7 @@ public class PMaintanance {
 			int fromFirst=year-4;
 			String fromFirstYear=fromFirst+"-04-01";
 			System.out.println( year+""+month+""+fromFirstYear+""+ toFirstYear+""+fromSecondYear+""+toSecondYear+""+fromThirdYear+""+toThirdYear+""+fromFourthYear+""+toFourthYear);
-			breakdownTimeYearlyRes=breakdownYearlyTimeRepository.getAllBrekYearwiseBreakdownTime(""+fromSecond,""+fromThird,""+fromFourth,(year+1)+"",fromFirstYear, toFirstYear,fromSecondYear,toSecondYear,fromThirdYear,toThirdYear,fromFourthYear,toFourthYear,deptId);
+			breakdownTimeYearlyRes=breakdownYearlyTimeRepository.getAllBrekYearwiseBreakdownTime(""+fromSecond,""+fromThird,""+fromFourth,(year)+"",fromFirstYear, toFirstYear,fromSecondYear,toSecondYear,fromThirdYear,toThirdYear,fromFourthYear,toFourthYear,deptId);
 			machineL5TimeTargetRes=machineL5TimeTargetRepository.getYearlyAssignedL5TargetTime(graphType,fromSecond,fromThird,fromFourth,year,deptId);
 			machineL3TimeTargetRes=machineL3TimeTargetRepository.getYearlyAssignedL3TargetTime(graphType,fromSecond,fromThird,fromFourth,year,deptId);
 			dailyBreakdownsRes=dailyBreakdownRepository.getAllBrekDailyBreakdownsTime(
@@ -2112,7 +2126,7 @@ public class PMaintanance {
 			int fromFirst=year-4;
 			String fromFirstYear=fromFirst+"-04-01";
 			System.out.println( year+""+month+""+fromFirstYear+""+ toFirstYear+""+fromSecondYear+""+toSecondYear+""+fromThirdYear+""+toThirdYear+""+fromFourthYear+""+toFourthYear);
-			breakdownTimeYearlyRes=breakdownYearlyTimeRepository.getAllBrekYearwiseBreakdownELoss(""+fromSecond,""+fromThird,""+fromFourth,(year+1)+"",fromFirstYear, toFirstYear,fromSecondYear,toSecondYear,fromThirdYear,toThirdYear,fromFourthYear,toFourthYear,deptId);
+			breakdownTimeYearlyRes=breakdownYearlyTimeRepository.getAllBrekYearwiseBreakdownELoss(""+fromSecond,""+fromThird,""+fromFourth,(year)+"",fromFirstYear, toFirstYear,fromSecondYear,toSecondYear,fromThirdYear,toThirdYear,fromFourthYear,toFourthYear,deptId);
 			machineL5TimeTargetRes=machineL5TimeTargetRepository.getYearlyAssignedL5TargetTime(graphType,fromSecond,fromThird,fromFourth,year,deptId);
 			machineL3TimeTargetRes=machineL3TimeTargetRepository.getYearlyAssignedL3TargetTime(graphType,fromSecond,fromThird,fromFourth,year,deptId);
 			dailyBreakdownsRes=dailyBreakdownRepository.getAllBrekDailyBreakdownsELoss(
@@ -2319,6 +2333,175 @@ public class PMaintanance {
 		}
 		
 		return save;
+	}
+	
+	
+	
+	
+	@RequestMapping(value = { "/getPmPlanActualData" }, method = RequestMethod.POST)
+	@ResponseBody
+	public PmActualGData getPmPlanActualData(@RequestParam("deptId")int deptId,@RequestParam("status1")int status1,@RequestParam("status2")int status2,@RequestParam("status3")int status3) 
+	{
+		PmActualGData pmActualGData=pmActualPlanGDataRepository.getPmPlanActualData(deptId,status1,status2,status3);
+		return pmActualGData;
+		
+	}
+	
+	@RequestMapping(value = { "/getPmPlanTargetData" }, method = RequestMethod.POST)
+	@ResponseBody
+	public PmTargetGData getPmPlanTargetData(@RequestParam("deptId")int deptId) 
+	{
+		PmTargetGData pmTargetGData=pmTargetPlanGDataRepository.getPmPlanTargetData(deptId);
+		return pmTargetGData;
+		
+	}
+	
+	@RequestMapping(value = { "/getCbmTargetData" }, method = RequestMethod.POST)
+	@ResponseBody
+	public PmTargetGData getCbmTargetData(@RequestParam("deptId")int deptId) 
+	{
+		PmTargetGData pmTargetGData=pmTargetPlanGDataRepository.getCbmTargetData(deptId);
+		return pmTargetGData;
+		
+	}
+	
+	@RequestMapping(value = "/getMachineL5Target", method = RequestMethod.POST)
+	public @ResponseBody MachineL5Target getMachineL5Target(@RequestParam("graphType") int graphType,
+			 @RequestParam("month") int month,@RequestParam("year") int year,@RequestParam("deptId") int deptId) {
+		
+
+		MachineL5Target machineL5TargetRes=new MachineL5Target();
+		if(month<4)
+		{
+			String toFourthYear=year+"-03-31";
+			int fromFourth=year-1;
+			String fromFourthYear=fromFourth+"-04-01";
+			String toThirdYear=fromFourth+"-03-31";
+			int fromThird=year-2;
+			String fromThirdYear=fromThird+"-04-01";
+			String toSecondYear=fromThird+"-03-31";
+			int fromSecond=year-3;
+			String fromSecondYear=fromSecond+"-04-01";
+			String toFirstYear=fromSecond+"-03-31";
+			int fromFirst=year-4;
+			String fromFirstYear=fromFirst+"-04-01";
+			System.out.println( year+""+month+""+fromFirstYear+""+ toFirstYear+""+fromSecondYear+""+toSecondYear+""+fromThirdYear+""+toThirdYear+""+fromFourthYear+""+toFourthYear);
+			machineL5TargetRes=machineL5TargetRepository.getYearlyAssignedL5Target(graphType,fromSecond,fromThird,fromFourth,year,deptId);
+			
+		}
+		else
+		{
+			int yearPlus1=year+1;
+			String toFourthYear=yearPlus1+"-03-31";
+			int fromFourth=yearPlus1-1;
+			String fromFourthYear=fromFourth+"-04-01";
+			String toThirdYear=fromFourth+"-03-31";
+			int fromThird=yearPlus1-2;
+			String fromThirdYear=fromThird+"-04-01";
+			String toSecondYear=fromThird+"-03-31";
+			int fromSecond=yearPlus1-3;
+			String fromSecondYear=fromSecond+"-04-01";
+			String toFirstYear=fromSecond+"-03-31";
+			int fromFirst=yearPlus1-4;
+			String fromFirstYear=fromFirst+"-04-01";
+			System.err.println(year+""+month+""+ fromFirstYear+""+ toFirstYear+""+fromSecondYear+""+toSecondYear+""+fromThirdYear+""+toThirdYear+""+fromFourthYear+""+toFourthYear);
+			machineL5TargetRes=machineL5TargetRepository.getYearlyAssignedL5Target(graphType,fromSecond,fromThird,fromFourth,yearPlus1,deptId);
+			
+		}
+		
+		return machineL5TargetRes;
+		
+	}
+	@RequestMapping(value = "/getMachineL3Target", method = RequestMethod.POST)
+	public @ResponseBody MachineL3Target getMachineL3Target(@RequestParam("graphType") int graphType,
+			 @RequestParam("month") int month,@RequestParam("year") int year,@RequestParam("deptId") int deptId) {
+		
+	
+		MachineL3Target machineL3TargetRes=new MachineL3Target();
+		if(month<4)
+		{
+			String toFourthYear=year+"-03-31";
+			int fromFourth=year-1;
+			String fromFourthYear=fromFourth+"-04-01";
+			String toThirdYear=fromFourth+"-03-31";
+			int fromThird=year-2;
+			String fromThirdYear=fromThird+"-04-01";
+			String toSecondYear=fromThird+"-03-31";
+			int fromSecond=year-3;
+			String fromSecondYear=fromSecond+"-04-01";
+			String toFirstYear=fromSecond+"-03-31";
+			int fromFirst=year-4;
+			String fromFirstYear=fromFirst+"-04-01";
+			System.out.println( year+""+month+""+fromFirstYear+""+ toFirstYear+""+fromSecondYear+""+toSecondYear+""+fromThirdYear+""+toThirdYear+""+fromFourthYear+""+toFourthYear);
+			machineL3TargetRes=machineL3TargetRepository.getYearlyAssignedL3Target(graphType,fromSecond,fromThird,fromFourth,year,deptId);
+				}
+		else
+		{
+			int yearPlus1=year+1;
+			String toFourthYear=yearPlus1+"-03-31";
+			int fromFourth=yearPlus1-1;
+			String fromFourthYear=fromFourth+"-04-01";
+			String toThirdYear=fromFourth+"-03-31";
+			int fromThird=yearPlus1-2;
+			String fromThirdYear=fromThird+"-04-01";
+			String toSecondYear=fromThird+"-03-31";
+			int fromSecond=yearPlus1-3;
+			String fromSecondYear=fromSecond+"-04-01";
+			String toFirstYear=fromSecond+"-03-31";
+			int fromFirst=yearPlus1-4;
+			String fromFirstYear=fromFirst+"-04-01";
+			System.err.println(year+""+month+""+ fromFirstYear+""+ toFirstYear+""+fromSecondYear+""+toSecondYear+""+fromThirdYear+""+toThirdYear+""+fromFourthYear+""+toFourthYear);
+			machineL3TargetRes=machineL3TargetRepository.getYearlyAssignedL3Target(graphType,fromSecond,fromThird,fromFourth,yearPlus1,deptId);
+			
+		}
+		
+		return machineL3TargetRes;
+		
+	}
+	@RequestMapping(value = "/getPreviousActualSchedule", method = RequestMethod.POST)
+	public @ResponseBody BreakdownYearly getPreviousActualSchedule(@RequestParam("graphType") int graphType,
+			 @RequestParam("month") int month,@RequestParam("year") int year,@RequestParam("deptId") int deptId) {
+		
+	
+		BreakdownYearly breakdownYearly=new BreakdownYearly();
+		if(month<4)
+		{
+			int fromFourth=year-1;
+			int fromThird=year-2;
+			int fromSecond=year-3;
+			breakdownYearly=breakdownYearlyRepository.getPreviousActualSchedule(graphType,fromSecond,fromThird,fromFourth,year,deptId);
+				}
+		else
+		{
+			int yearPlus1=year+1;
+			int fromFourth=yearPlus1-1;
+			int fromThird=yearPlus1-2;
+			int fromSecond=yearPlus1-3;
+			breakdownYearly=breakdownYearlyRepository.getPreviousActualSchedule(graphType,fromSecond,fromThird,fromFourth,yearPlus1,deptId);
+			
+		}
+		
+		return breakdownYearly;
+		
+	}
+	
+	@RequestMapping(value = { "/getTbmPlanActualData" }, method = RequestMethod.POST)
+	@ResponseBody
+	public int getTbmPlanActualData(@RequestParam("deptId")int deptId,@RequestParam("month")int month,@RequestParam("year")int year) 
+	{
+	
+		int plan=pmActualPlanGDataRepository.findTbmPlan(
+					year+"-"+month+"-01",year+"-"+month+"-02",year+"-"+month+"-03",year+"-"+month+"-04",
+					year+"-"+month+"-05",year+"-"+month+"-06",year+"-"+month+"-07",year+"-"+month+"-08",
+					year+"-"+month+"-09",year+"-"+month+"-10",year+"-"+month+"-11",year+"-"+month+"-12",
+					year+"-"+month+"-13",year+"-"+month+"-14",year+"-"+month+"-15",year+"-"+month+"-16",
+					year+"-"+month+"-17",year+"-"+month+"-18",year+"-"+month+"-19",year+"-"+month+"-20",
+					year+"-"+month+"-21",year+"-"+month+"-22",year+"-"+month+"-23",year+"-"+month+"-24",
+					year+"-"+month+"-25",year+"-"+month+"-26",year+"-"+month+"-27",year+"-"+month+"-28",
+					year+"-"+month+"-29",year+"-"+month+"-30",year+"-"+month+"-31",deptId);
+		
+		return plan;
+		
 	}
 	
 }

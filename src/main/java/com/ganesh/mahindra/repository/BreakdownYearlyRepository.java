@@ -32,4 +32,8 @@ public interface BreakdownYearlyRepository extends JpaRepository<BreakdownYearly
 	BreakdownYearly getAllBrekYearwiseBreakdowns(@Param("fromFirst") String fromFirst,@Param("fromSecond") String fromSecond,@Param("fromThird") String fromThird,@Param("fromFourth") String fromFourth,@Param("fromFirstYear") String fromFirstYear,@Param("toFirstYear") String toFirstYear,
 			@Param("fromSecondYear")String fromSecondYear,@Param("toSecondYear") String toSecondYear, @Param("fromThirdYear")String fromThirdYear,@Param("toThirdYear") String toThirdYear,@Param("fromFourthYear") String fromFourthYear,
 			@Param("toFourthYear")String toFourthYear,@Param("deptId")int deptId);
+
+	@Query(value="select SUM(1) as id,coalesce((select ex_string from mac_breakdown_target where graph_type=:graphType and ex_int=:deptId and year=:fromSecond and status=1),0)as first_year,coalesce((select ex_string from mac_breakdown_target where graph_type=:graphType and ex_int=:deptId and year=:fromThird and status=1),0)as second_year,coalesce((select ex_string from mac_breakdown_target where graph_type=:graphType and ex_int=:deptId and year=:fromFourth and status=1),0)as third_year,coalesce((select ex_string from mac_breakdown_target where graph_type=:graphType and ex_int=:deptId and year=:year and status=1),0)as fourth_year from dual",nativeQuery=true)
+	BreakdownYearly getPreviousActualSchedule(@Param("graphType")int graphType,@Param("fromSecond") int fromSecond,@Param("fromThird") int fromThird,@Param("fromFourth") int fromFourth,@Param("year") int year,
+			@Param("deptId")int deptId);
 }
