@@ -26,4 +26,7 @@ public interface CbmScheduleRepository extends JpaRepository<CbmSchedule, Intege
 
 	@Query(value="select * from m_cbm_schedule where (er_h1>0 or er_h2>0) and dept_id=:deptId",nativeQuery=true)
 	List<CbmSchedule> getCbmScheduleListForEarthingResistance(@Param("deptId")int deptId);
+
+	@Query(value="select * from m_cbm_schedule where (mmc_h1>0 or mmc_h1>0) and dept_id=:deptId",nativeQuery=true)
+	List<CbmSchedule> getCbmScheduleListForCbmMagazineChain(@Param("deptId")int deptId);
 }

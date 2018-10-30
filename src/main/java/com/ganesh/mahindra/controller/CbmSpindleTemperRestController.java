@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ganesh.mahindra.model.cbm.CbmEarthingResistance;
+import com.ganesh.mahindra.model.cbm.CbmMagazineChain;
 import com.ganesh.mahindra.model.cbm.CbmSchedule;
 import com.ganesh.mahindra.model.cbm.CbmSpindleClampingForce;
 import com.ganesh.mahindra.model.cbm.CbmSpindleTemper;
 import com.ganesh.mahindra.repository.CbmEarthingResistanceRepository;
+import com.ganesh.mahindra.repository.CbmMagazineChainRepository;
 import com.ganesh.mahindra.repository.CbmScheduleRepository;
 import com.ganesh.mahindra.repository.CbmSpindleClampingForceRepository;
 import com.ganesh.mahindra.repository.CbmSpindleTemperRepository;
@@ -34,6 +36,9 @@ public class CbmSpindleTemperRestController {
 	
 	@Autowired
 	CbmEarthingResistanceRepository cbmEarthingResistanceRepository;
+	
+	@Autowired
+	CbmMagazineChainRepository cbmMagazineChainRepository;
 	
 	@RequestMapping(value = { "/saveCbmSpindleTemper" }, method = RequestMethod.POST)
 	@ResponseBody
@@ -180,6 +185,56 @@ public class CbmSpindleTemperRestController {
 		try {
 			
 			cbmScheduleList=cbmScheduleRepository.getCbmScheduleListForEarthingResistance(deptId);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	    return cbmScheduleList;
+	}
+	
+	@RequestMapping(value = { "/saveCbmMagazineChain" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<CbmMagazineChain> saveCbmMagazineChain(@RequestBody List<CbmMagazineChain> cbmMagazineChainList) 
+	{
+		List<CbmMagazineChain> save = new ArrayList<CbmMagazineChain>();
+		
+		try {
+			
+			 save= cbmMagazineChainRepository.save(cbmMagazineChainList);
+		    
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return save;
+	}
+	
+	@RequestMapping(value = { "/getCbmMagazineChain" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<CbmMagazineChain> getCbmMagazineChain(@RequestParam("deptId") int deptId) 
+	{
+		List<CbmMagazineChain> list = new ArrayList<CbmMagazineChain>();
+		
+		try {
+			
+			list= cbmMagazineChainRepository.findByStatusAndDeptId(0,deptId);
+		    
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	@RequestMapping(value = { "/getCbmScheduleListForCbmMagazineChain" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<CbmSchedule> getCbmScheduleListForCbmMagazineChain(@RequestParam("deptId")int deptId) 
+	{
+		List<CbmSchedule> cbmScheduleList = new ArrayList<>();
+		
+		try {
+			
+			cbmScheduleList=cbmScheduleRepository.getCbmScheduleListForCbmMagazineChain(deptId);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
