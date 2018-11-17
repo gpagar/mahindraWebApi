@@ -16,11 +16,13 @@ import com.ganesh.mahindra.model.cbm.CbmMagazineChain;
 import com.ganesh.mahindra.model.cbm.CbmSchedule;
 import com.ganesh.mahindra.model.cbm.CbmSpindleClampingForce;
 import com.ganesh.mahindra.model.cbm.CbmSpindleTemper;
+import com.ganesh.mahindra.model.cbm.CbmYearEnd;
 import com.ganesh.mahindra.repository.CbmEarthingResistanceRepository;
 import com.ganesh.mahindra.repository.CbmMagazineChainRepository;
 import com.ganesh.mahindra.repository.CbmScheduleRepository;
 import com.ganesh.mahindra.repository.CbmSpindleClampingForceRepository;
 import com.ganesh.mahindra.repository.CbmSpindleTemperRepository;
+import com.ganesh.mahindra.repository.CbmYearEndRepository;
 
 @RestController
 public class CbmSpindleTemperRestController {
@@ -39,6 +41,9 @@ public class CbmSpindleTemperRestController {
 	
 	@Autowired
 	CbmMagazineChainRepository cbmMagazineChainRepository;
+	
+	@Autowired
+	CbmYearEndRepository cbmYearEndRepository;
 	
 	@RequestMapping(value = { "/saveCbmSpindleTemper" }, method = RequestMethod.POST)
 	@ResponseBody
@@ -66,6 +71,23 @@ public class CbmSpindleTemperRestController {
 		try {
 			
 			list= cbmSpindleTemperRepository.findByStatusAndDeptId(0,deptId);
+		    
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	@RequestMapping(value = { "/getCbmSpindleTemperHistoryByYearId" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<CbmSpindleTemper> getCbmSpindleTemperHistoryByYearId(@RequestParam("yearId") int yearId) 
+	{
+		List<CbmSpindleTemper> list = new ArrayList<CbmSpindleTemper>();
+		
+		try {
+			
+			list= cbmSpindleTemperRepository.findByYearEnd(String.valueOf(yearId));
 		    
 			
 		}catch(Exception e) {
@@ -240,6 +262,64 @@ public class CbmSpindleTemperRestController {
 			e.printStackTrace();
 		}
 	    return cbmScheduleList;
+	}
+	
+	@RequestMapping(value = { "/saveCbmYearEnd" }, method = RequestMethod.POST)
+	@ResponseBody
+	public CbmYearEnd saveCbmYearEnd(@RequestBody  CbmYearEnd  cbmYearEnd) 
+	{
+		CbmYearEnd save = new CbmYearEnd();
+		
+		try {
+			
+			 save= cbmYearEndRepository.save(cbmYearEnd);
+		    
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return save;
+	}
+	
+	@RequestMapping(value = { "/getYearEndByDeptIdAndCbmType" }, method = RequestMethod.POST)
+	@ResponseBody
+	public CbmYearEnd getYearEndByDeptIdAndCbmType(@RequestParam("deptId")int deptId,
+			@RequestParam("cbmType")int cbmType) 
+	{
+		CbmYearEnd getYearEndByDeptIdAndCbmType = new CbmYearEnd();
+		
+		try {
+			
+			getYearEndByDeptIdAndCbmType= cbmYearEndRepository.findByDeptIdAndCbmTypeAndStatus(deptId,cbmType,0);
+			
+			if(getYearEndByDeptIdAndCbmType==null) {
+				getYearEndByDeptIdAndCbmType = new CbmYearEnd();
+			}
+		    
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			getYearEndByDeptIdAndCbmType = new CbmYearEnd();
+		}
+		return getYearEndByDeptIdAndCbmType;
+	}
+	
+	@RequestMapping(value = { "/getYearEndList" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<CbmYearEnd> getYearEndList(@RequestParam("deptId")int deptId,
+			@RequestParam("cbmType")int cbmType) 
+	{
+		List<CbmYearEnd> getYearEndList = new ArrayList<CbmYearEnd>();
+		
+		try {
+			
+			getYearEndList= cbmYearEndRepository.getYearEndList(deptId,cbmType,1);
+		    
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return getYearEndList;
 	}
 
 }

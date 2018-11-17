@@ -10,4 +10,6 @@ public interface CbmSpindleTemperRepository extends JpaRepository<CbmSpindleTemp
 
 	List<CbmSpindleTemper> findByStatusAndDeptId(int i, int deptId);
 
+	List<CbmSpindleTemper> findByYearEnd(String yearId);
+
 }
