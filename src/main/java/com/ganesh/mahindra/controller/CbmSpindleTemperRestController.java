@@ -27,6 +27,8 @@ import com.ganesh.mahindra.repository.CbmYearEndRepository;
 @RestController
 public class CbmSpindleTemperRestController {
 	
+	
+	
 	@Autowired
 	CbmSpindleTemperRepository cbmSpindleTemperRepository;
 	
