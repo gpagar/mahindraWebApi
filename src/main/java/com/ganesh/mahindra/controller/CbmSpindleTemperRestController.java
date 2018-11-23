@@ -284,6 +284,23 @@ public class CbmSpindleTemperRestController {
 		return list;
 	}
 	
+	@RequestMapping(value = { "/getCbmMagazineChainHistoryByYearId" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<CbmMagazineChain> getCbmMagazineChainHistoryByYearId(@RequestParam("yearId") int yearId) 
+	{
+		List<CbmMagazineChain> list = new ArrayList<CbmMagazineChain>();
+		
+		try {
+			
+			list= cbmMagazineChainRepository.findByYearEnd(String.valueOf(yearId) );
+		    
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	@RequestMapping(value = { "/getCbmScheduleListForCbmMagazineChain" }, method = RequestMethod.POST)
 	@ResponseBody
 	public List<CbmSchedule> getCbmScheduleListForCbmMagazineChain(@RequestParam("deptId")int deptId) 
