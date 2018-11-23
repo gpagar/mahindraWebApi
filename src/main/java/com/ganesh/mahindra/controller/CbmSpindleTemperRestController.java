@@ -150,6 +150,23 @@ public class CbmSpindleTemperRestController {
 		return list;
 	}
 	
+	@RequestMapping(value = { "/getCbmSpindleClimpingForceHistoryByYearId" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<CbmSpindleClampingForce> getCbmSpindleClimpingForceHistoryByYearId(@RequestParam("yearId") int yearId) 
+	{
+		List<CbmSpindleClampingForce> list = new ArrayList<CbmSpindleClampingForce>();
+		
+		try {
+			
+			list= cbmSpindleClampingForceRepository.findByYearEnd(String.valueOf(yearId));
+		    
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	@RequestMapping(value = { "/getCbmScheduleListForSpindleClimpingForce" }, method = RequestMethod.POST)
 	@ResponseBody
 	public List<CbmSchedule> getCbmScheduleListForSpindleClimpingForce(@RequestParam("deptId")int deptId) 
@@ -192,6 +209,23 @@ public class CbmSpindleTemperRestController {
 		try {
 			
 			list= cbmEarthingResistanceRepository.findByStatusAndDeptId(0,deptId);
+		    
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	@RequestMapping(value = { "/getEarthingResistanceHistoryByYearId" }, method = RequestMethod.POST)
+	@ResponseBody
+	public List<CbmEarthingResistance> getEarthingResistanceHistoryByYearId(@RequestParam("yearId") int yearId) 
+	{
+		List<CbmEarthingResistance> list = new ArrayList<CbmEarthingResistance>();
+		
+		try {
+			
+			list= cbmEarthingResistanceRepository.getByYearId( yearId );
 		    
 			
 		}catch(Exception e) {

@@ -10,4 +10,6 @@ public interface CbmSpindleClampingForceRepository extends JpaRepository<CbmSpin
 
 	List<CbmSpindleClampingForce> findByStatusAndDeptId(int i, int deptId);
 
+	List<CbmSpindleClampingForce> findByYearEnd(String yearId);
+
 }
